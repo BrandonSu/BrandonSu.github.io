@@ -1,0 +1,246 @@
+
+<table>
+
+<tr>
+<td><canvas id=canvas1 width=700 height=600></td>
+<td width=50></td>
+<td valign=top>
+Was first going to do some kind of sonic the hedgehog collect the golden rings thing, then wanted to do solar system, finally decided on rainbow rings and a half planet Neptune kinda thing in the middle lol 
+</td>
+</tr>
+
+</table>
+
+<script src=drawlib1.js></script>
+<script src=M.js></script>
+<script src=S.js></script>
+<script>
+
+   // MATRIX IS AN ARRAY OF 16 NUMBERS.
+
+   var m = [0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0];
+
+   canvas1.update = function(g) {
+      var p, C, c, canvas = this;
+
+      // DRAW A SET OF CURVES IN 3D WITH PERSPECTIVE PROJECTION.
+
+      function drawCurves(m, C) {
+         var i, n, p, cv, x, y, z, fl = 5,
+	     w = canvas.width;
+	     h = canvas.height;
+
+         // LOOP THROUGH CURVES.
+
+         for (n = 0 ; n < C.length ; n++) {
+
+            // BUILD THE PROJECTED CURVE, POINT BY POINT.
+
+	    cv = [];
+	    for (i = 0 ; i < C[n].length ; i++) {
+
+	       // TRANSFORM POINT
+
+	       p = M.transform(m, C[n][i]);
+
+	       // RETRIEVE COORDINATES FROM TRANSFORMED POINT
+
+	       x = p[0];
+	       y = p[1];
+	       z = p[2];
+
+	       // DO PERSPECTIVE TRANSFORM
+
+	       x *= fl / (fl - z);
+	       y *= fl / (fl - z);
+
+	       // DO VIEWPORT TRANSFORM
+
+	       x =  w * x * .5 + .5 * w;
+	       y = -w * y * .5 + .5 * h;
+	       cv.push([x, y]);
+            }
+
+	    // DRAW THE PROJECTED CURVE ONTO THE CANVAS.
+
+	    g.beginPath();
+            g.moveTo(cv[0][0], cv[0][1]);
+	    for (i = 1 ; i < cv.length ; i++)
+               g.lineTo(cv[i][0], cv[i][1]);
+	    g.stroke();
+         }
+      }
+
+      g.lineCap = 'round';
+      g.lineJoin = 'round';
+      g.lineWidth = 1;
+
+      // OUTLINE THE CANVAS
+
+      g.beginPath();
+      g.moveTo(0,0);
+      g.lineTo(this.width,0);
+      g.lineTo(this.width,this.height);
+      g.lineTo(0,this.height);
+      g.lineTo(0,0);
+      g.stroke();
+
+      M.identity(m);
+      M.scale(m, .5);  // Scale the scene down.
+
+      // DRAW SHAPES.
+     
+      M.save(m);
+         M.translate(m, [Math.cos(time),Math.sin(time),-0.3])
+         M.scale(m, 0.3);
+         g.strokeStyle='grey';
+         M.rotateY(m, time);
+         drawCurves(m, S.parametricMesh(S.sphere, 16, 10));
+
+         g.lineWidth = 5;
+       //  g.strokeStyle='green';
+         M.scale(m,1.5);
+         drawCurves(m, [
+            [[-1,0,0],[0,-1,0],[0,0,-1],[-1,0,0]],
+            [[ 1,0,0],[0,-1,0],[0,0,-1],[ 1,0,0]],
+            [[-1,0,0],[0, 1,0],[0,0,-1],[-1,0,0]],
+            [[ 1,0,0],[0, 1,0],[0,0,-1],[ 1,0,0]],
+            [[-1,0,0],[0,-1,0],[0,0, 1],[-1,0,0]],
+            [[ 1,0,0],[0,-1,0],[0,0, 1],[ 1,0,0]],
+            [[-1,0,0],[0, 1,0],[0,0, 1],[-1,0,0]],
+            [[ 1,0,0],[0, 1,0],[0,0, 1],[ 1,0,0]], ]);
+
+         M.restore(m);
+
+         M.save(m);
+         M.translate(m, [0, 1., 0]);
+         M.scale(m,.6);
+         g.strokeStyle = "yellow";
+         M.rotateX(m,time*2);
+         M.rotateY(m, Math.PI/2);
+         drawCurves(m, S.parametricMesh(S.torus, 16, 10));
+
+         M.restore(m);
+
+
+         M.save(m);
+
+         M.translate(m, [-.8, .85, 0]);
+         M.scale(m,.6);
+         g.strokeStyle = "orange";
+         M.rotateZ(m,-Math.PI/4);
+         M.rotateY(m, Math.PI/2);
+         M.rotateZ(m, time*2);
+         drawCurves(m, S.parametricMesh(S.torus, 14, 9));
+
+         M.restore(m);
+
+         M.save(m);
+
+         M.translate(m, [.8, .85, 0]);
+         M.scale(m,.6);
+         g.strokeStyle = "green";
+         M.rotateZ(m,Math.PI/4);
+         M.rotateY(m, Math.PI/2);
+         M.rotateZ(m, time*2);
+         drawCurves(m, S.parametricMesh(S.torus, 14, 9));
+
+         M.restore(m);
+
+         M.save(m);
+
+         M.translate(m, [-1., 0, 0]);
+         M.scale(m,.6);
+         g.strokeStyle = "red";
+         M.rotateZ(m,Math.PI/2);
+         M.rotateY(m, Math.PI/2);
+         M.rotateZ(m, time*2);
+         drawCurves(m, S.parametricMesh(S.torus, 14, 9));
+
+         M.restore(m);
+
+         M.save(m);
+
+         M.translate(m, [1., 0, 0]);
+         M.scale(m,.6);
+         g.strokeStyle = "blue";
+         M.rotateZ(m,Math.PI/2);
+         M.rotateY(m, Math.PI/2);
+         M.rotateZ(m, time*2);
+         drawCurves(m, S.parametricMesh(S.torus, 14, 9));
+
+         M.restore(m);
+
+         M.save(m);
+
+         M.translate(m, [-.8, -.85, 0]);
+         M.scale(m,.6);
+         g.strokeStyle = "pink";
+         M.rotateZ(m,Math.PI/4);
+         M.rotateY(m, -Math.PI/2);
+         M.rotateZ(m, time*2);
+         drawCurves(m, S.parametricMesh(S.torus, 14, 9));
+
+         M.restore(m);
+
+         M.save(m);
+
+         M.translate(m, [.8, -.85, 0]);
+         M.scale(m,.6);
+         g.strokeStyle = "purple";
+         M.rotateZ(m,-Math.PI/4);
+         M.rotateY(m, -Math.PI/2);
+         M.rotateZ(m, time*2);
+         drawCurves(m, S.parametricMesh(S.torus, 14, 9));
+
+         M.restore(m);
+
+         M.save(m);
+
+         M.translate(m, [0, -1., 0]);
+         M.scale(m,.6);
+         g.strokeStyle = "#DA70D6";
+         M.rotateX(m,time*2);
+         M.rotateY(m, Math.PI/2);
+         drawCurves(m, S.parametricMesh(S.torus, 16, 10));
+
+         M.restore(m);
+
+
+
+         g.lineWidth = 2;
+         M.save(m);
+
+         M.translate(m, [0, 0, 0]);
+         M.scale(m,.15);
+ M.rotateX(m, 1.5);
+         g.strokeStyle = "#5F9EA0";
+         M.rotateZ(m,-time*2);
+       //  M.rotateY(m, Math.PI/2);
+         drawCurves(m, S.parametricMesh(S.halfTorus, 12, 8));
+
+         M.restore(m);
+
+          M.translate(m, [0, 0, 0]);
+         M.scale(m,.15);
+         M.rotateZ(m, 1.5);
+         g.strokeStyle = "#4682B4";
+         M.rotateX(m,time*2);
+       //  M.rotateY(m, Math.PI/2);
+         drawCurves(m, S.parametricMesh(S.halfSphere, 12, 8));
+
+         M.restore(m);
+
+
+
+
+
+      g.strokeStyle="black";
+      M.restore(m);
+   }
+
+   // WE ARE DRAWING ONLY ONE CANVAS.
+
+   drawCanvases([canvas1]);
+</script>
+

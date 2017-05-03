@@ -1,0 +1,161 @@
+<script src=lib.js></script>
+
+<body bgcolor=black text=white>
+<center>
+<canvas id='canvas1' width=600 height=600></canvas>
+</center>
+</body>
+
+<script id='vs_script' type='x-shader/x-vertex'>
+
+// YOU PROBABLY WON'T NEED TO CHANGE THE VERTEX SHADER FOR NOW.
+
+   attribute vec3 aPos;
+   varying   vec3 vPos;
+   void main() {
+      gl_Position = vec4(aPos, 1.0);  // Set position of vertex in image.
+      vPos = aPos;                    // Copy pos to a varying variable to
+   }                                  //   interpolate it across pixels.
+</script>
+
+<script id='fs_script' type='x-shader/x-fragment'>
+
+
+// Code Starts here!
+
+
+
+
+// Code Starts here!
+
+varying vec3 vPos;                               // Pixel position
+uniform float uTime;                             // Time
+vec2 A[14];
+
+float D(vec2 p) {          // sun
+   float rr = dot(p, p);
+   return rr >= 1. ? 0. : sqrt(.5 - rr);
+}
+
+float E(vec2 p) {          // planets
+   float rr = dot(p, p);
+   return rr >= 1. ? 0. : sqrt(.3 - rr);
+}
+float F(float x, float y, float r) {             // Make a disk shape
+   float zz = 1. - (x * x + y * y) / (r * r);
+   return sqrt(max(0., zz));
+}
+vec3 soap(vec3 v) {                            //  haloes
+   return sin(15. * v);
+}
+
+float S(vec2 p) {          // stars
+   float rr = dot(p, p);
+   return rr >= 1. ? 0. : sqrt(.005 - rr);
+}
+
+void main() {
+
+   A[0] = vec2(0, .0); // sun
+   A[1] = vec2(1.9, -.7); // mercury
+   A[2] = vec2(.8, 1.); //venus
+   A[3] = vec2(-1.4, .6);  // earth
+   A[4] = vec2(-1.3, -1.2); // mars
+   A[5] = vec2(-2.5, -2.5); //stars v
+   A[6] = vec2(-.5, -2.);
+   A[7] = vec2(1.5, -2.8);
+   A[8] = vec2(2.4, 1.2);
+   A[9] = vec2(1.7, 2.5);
+   A[10] = vec2(.0, 2.1);
+   A[11] = vec2(-2.0, 2.6);
+   A[12] = vec2(-2.6, 1.2);
+   A[13] = vec2(-1.8, -.2); //stars ^
+
+   float x = vPos.x;
+   float y = vPos.y;
+   vec2 p = vPos.xy;
+
+   vec3 c = mix(vec3(0.,.1,1.), vec3(.1,.2,.8), .5 + .5 * y); // background
+   c *= vec3(1.,0.5,0.5);
+   c *= vec3(1.,0.5,0.5);
+   float z = D(4. * p + vec2(2.5, -1.+.5 * sin(uTime * 5.)));
+   float q = D(4. * p + vec2(2.* sin(uTime * 5.), 1.+.5 )); 
+//almost got the other planets to orbit too
+   float m = D(8. * p + vec2(2.5 * cos(uTime)+7., .5 * sin(uTime))-2.); // moon
+
+   if (m > 0. && sin(uTime)<.5){                   //one half of moon
+       c = vec3(-z*sin(uTime)+1.8, 1.8, 1.8);
+       c*= .2;
+   }
+
+   if (m > 0. && sin(uTime)>.5){                 //other half of moon
+       c = vec3(-z*sin(uTime)+1.8, 1.8, 1.8);
+       c*= 0.2;
+   }
+
+for (int i = 5 ; i < 14 ; i++) {          // stars
+      float z = S(3. * p + A[i]);
+      if (z > 0.){
+         c = vec3(z, z, z);
+         c += vec3(.4,.6,1.);
+       }
+   }
+   for (int i = 0 ; i < 1 ; i++) {        // Sun
+      float z = D(3. * p + A[i]);
+      if (z > 0.){
+         c = vec3(z, z, z);
+         c *= vec3(3,1.5,.0);
+      } 
+   }
+ for (int i = 1 ; i < 2 ; i++) {           // Earth/Saturn
+      float w = E(3. * p + A[i]);      
+      //reassigning the variable seems to allow earth to bob up and down, 
+      //but i couldn't get the other planets to move side to side correctly
+      vec2 t = vec2((F(x + .01, y, .3) - z) / 1.01,    // Surface tilt
+                    (F(x, y + .01, .3) - z) / .51);
+      if (z > 0.){
+         c = vec3(z, z, z);
+         c *= vec3(0,1.,.0);
+      }
+      c *= 1. + 1.2 * soap(.25 * vec3(t, z));          
+      // Soap film which somehow gives the sun a halo type thing too
+ //also going to pretend the black thing around 
+ //earth represents the moon's orbit!!!
+   }
+
+for (int i = 2 ; i < 3 ; i++) {                // Mercury
+      float z = E(3. * p + A[i]);
+      if (z > 0.){
+         c = vec3(z, z, z);
+         c *= vec3(1.5,1.,1.);
+       }
+   }  
+for (int i = 3 ; i < 4 ; i++) {                  //Venus
+      float z = E(3. * p + A[i]);
+      if (z > 0.){
+         c = vec3(z, z, z);
+         c *= vec3(2.,1.5,.0);
+      }
+   }
+for (int i = 4 ; i < 5 ; i++) {          // Mars
+      float z = E(3. * p + A[i]);
+      if (z > 0.){
+         c = vec3(z, z, z);
+         c *= vec3(1.,0.,.0);
+       }
+   }
+
+   gl_FragColor = vec4(sqrt(c), 1.);             // Final pixel color
+}
+</script>
+   
+<script>
+
+var vs = vs_script.innerHTML, fs = fs_script.innerHTML;
+
+addTextEditor(fs, function() { canvas1.setShaders(vs, this.value); });
+
+gl_start(canvas1, vs, fs);
+
+</script>
+

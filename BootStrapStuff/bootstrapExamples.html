@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+<head>
+ 	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+
+	<style type = "text/css">
+		.foo {
+			border-right: 1px solid black;
+		}
+		.custom-color {
+			background-color: #069;
+			color:#fff;
+			/* just add your own css to the framework! */
+		}
+	</style>
+
+</head>
+
+
+<body>
+	<div class = "container">
+		<h1> hello </h1>
+
+		<div class="row">
+
+			<div class = "foo col-md-4 col-sm-6"> Column A </div>
+			<div class = "foo col-md-4 col-sm-6"> Column B </div>
+			<div class = "foo col-md-4 col-sm-12"> Column C </div>
+
+		</div>
+
+		<div class="jumbotron custom-color">
+			<h1> this is big! </h1>
+			<p> not so big </p>
+		</div>
+
+		<div class = "well"> this is a well </div>
+		<img src = "images/pyramids.png" class = "img-circle"> 
+		<img src = "images/pyramids.png" class = "img-thumbnail">
+		<!-- can make thumbanils that open to real image, image gallery type thing -->
+
+
+		<div class = "container">
+			<div class="btn-group">
+				<button class = "btn btn-default"> Click me </button>
+				<button class = "btn btn-primary"> Click me </button>
+				<button class = "btn btn-default"> Click me </button>
+				<button class = "btn btn-default"> Click me </button>
+			</div>
+			<div class="btn-group-vertical">
+				<button class = "btn btn-default"> Click me </button>
+				<button class = "btn btn-primary"> Click me </button>
+				<button class = "btn btn-default"> Click me </button>
+				<button class = "btn btn-default dropdown-toggle" data-toggle="dropdown"> dropdown</button>
+
+				<ul class="dropdown-menu" role = "menu">
+					<li><a href="#"> img</a> </li>
+					<li><a href="#"> tbale </a> </li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="container">
+			<ul class= "nav nav-tabs nav-justified">
+				<li><a data-toggle="tab" href="#tabhome"> Home </a></li>
+				<li><a data-toggle="tab" href="#tabcontact"> contact </a></li>
+				<li class="active" data-toggle="tab" href="#tabservices"> <a href="#">Services</a> </li>
+			</ul>
+
+			<div class = "tab-content">
+				<div id="tabhome" class = "tab-pane fade">
+					<h1> home </h1>
+				</div>
+
+				<div id = "tabcontact" class = "tab-pane fade">
+					<h1> contact </h1>
+				</div>
+
+				<div id = "tabservices" class = "tab-pane fade in active">
+					<h1> services </h1>
+				</div>
+				<!-- have images in there, they all load at the bginning once, so dont have to reload stuff everytime -->
+			</div>
+		</div>
+			<!-- overwrites the default link thing, instead opens in a tab 
+			tab content stuff is hidden until clicked-->
+
+	</div>
+
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+	</body>
+
+</html>

@@ -1,0 +1,178 @@
+<script src=M.js></script>
+<script src=lib2g.js></script>
+
+<body bgcolor=black text=white>
+<center>
+<canvas id='canvas1' width=600 height=600></canvas>
+</center>
+</body>
+
+<script id='vs_script' type='x-shader/x-vertex'>
+   attribute vec3 aPos, aNor;
+   varying   vec3 vPos, vNor;
+   uniform   mat4 matrix, invMatrix;
+   void main() {
+      vec4 pos = matrix * vec4(aPos, 1.);
+      vec4 nor = vec4(aNor, 0.) * invMatrix;
+
+// dot(nor, pos);
+// dot(nor * invMatrix, matrix * pos);
+// nor . invMatrix . matrix . pos
+// nor . (invMatrix . matrix) . pos
+// nor . pos
+
+      gl_Position = pos;
+      vPos = pos.xyz;
+      vNor = nor.xyz;
+   }
+</script>
+
+<script id='fs_script' type='x-shader/x-fragment'>
+varying vec3 vPos, vNor;
+void main() {
+   vec3 normal = normalize(vNor);
+   vec3 c = normal * .8 + .3;
+
+   //Phong stuff
+
+   vec3 V = vec3(1,0,0);
+   vec3 W = normalize(vec3(vPos.xy, -3.));
+   vec3 E = -W;
+
+   vec3 N = normalize(vNor);
+
+   
+   vec3 D = vec3(.55, .3, .45);
+   vec4 S = vec4(.4, .6, .5, 10);
+
+
+   float d = max(0., dot(N, normal));           
+   vec3 R = 2. * dot(N, normal) * N - normal;     
+   float s = pow(max(0., dot(E, R)), S.a);    
+   c += d * D + s * S.rgb * .1*S.a;
+
+   gl_FragColor = vec4(sqrt(c), 1.);
+
+}
+</script>
+   
+<script>
+
+var m = M.identityMatrix();
+
+var vs = vs_script.innerHTML, fs = fs_script.innerHTML;
+
+addTextEditor(fs, function() { canvas1.setShaders(vs, this.value); });
+
+var obj1, obj2;
+
+gl_start(canvas1, vs, fs,
+
+   function(time) {
+
+      M.identity(m);
+      M.rotateY(m, time);
+
+      /*M.save(m);
+        // obj1.setMatrix(m);
+      M.restore(m);*/
+
+      M.save(m);
+         M.rotateY(m, (time));
+         obj2.setMatrix(m);
+      M.restore(m);
+
+      M.save(m);
+      M.rotateY(m,(time+2));
+    //     M.rotateY(m, time);
+         obj23.setMatrix(m);
+      M.restore(m);
+
+      M.save(m);
+         M.rotateX(m, time);
+         obj3.setMatrix(m);
+      M.restore(m);
+/*
+       M.save(m);
+         M.rotateX(m, 2*time);
+         obj4.setMatrix(m);
+      M.restore(m);*/
+   }
+);
+   var scene = new Scene();
+/*
+   obj1 = new SceneObject();
+   obj1.setVertices([
+
+    /*
+      -.9,-.3, 0,  0,0,1,
+       .3,-.3, 0,  0,0,1,
+       .5, .1, 0,  0,0,1,
+
+       .5, .1, 0,  0,0,1,
+      -.0, .3, 0,  0,0,1,
+      -.3,-.3, 0,  0,0,1,
+   ]);
+   scene.addObject(obj1);*/
+
+   obj2 = new SceneObject();
+   obj2.setVertices([
+ /*     -.1,-.2,-.3,  -1.5,0,1,
+       .5,-.5, .3,  -0.5,0,1,
+       .2, .2, .3,  -0.5,0,1,
+
+       .2, .2, .3,  -0.5,0,1,
+      -.5, .5,-.3,  -1.5,0,1,
+      -.1,-.2,-.3,  -1.5,0,1,*/
+   ]);
+   scene.addObject(obj2);
+
+
+   obj23 = new SceneObject();
+   obj23.setVertices([
+      -.1,-.2,-.3,  -1.5,0,1,
+       .5,-.5, .3,  -0.5,0,1,
+       .2, .2, .3,  -0.5,0,1,
+
+       .2, .2, .3,  -0.5,0,1,
+      -.5, .5,-.3,  -1.5,0,1,
+      -.1,-.2,-.3,  -1.5,0,1,
+   ]);
+   scene.addObject(obj23);
+
+
+   obj3 = new SceneObject();
+   obj3.setVertices([
+       .5,-.5, .3,  -0.5,0,1,
+      -.1,-.2,-.3,  -1.5,0,1,
+       
+       .2, .2, .3,  -0.5,0,1,
+
+       .2, .2, .3,  -0.5,0,1,
+    
+      -.1,-.2,-.3,  -1.5,0,1,
+        -.5, .5,-.3,  -1.5,0,1,
+   ]);
+   scene.addObject(obj3);
+/*
+   obj4 = new SceneObject();
+   obj4.setVertices([
+    .2, .2, .3,  -0.5,0,1,
+       .5,-.5, .3,  -0.5,0,1,
+      -.1,-.2,-.3,  -1.5,0,1,
+       
+       
+
+      
+    
+      -.1,-.2,-.3,  -1.5,0,1,
+        -.5, .5,-.3,  -1.5,0,1,
+         .2, .2, .3,  -0.5,0,1,
+   ]);
+   scene.addObject(obj4);*/
+
+   canvas1.scene = scene;
+
+
+</script>
+

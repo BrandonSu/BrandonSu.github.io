@@ -1,0 +1,755 @@
+{
+  "id1": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+  },
+  "id2": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png"
+  },
+  "id3": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png"
+  },
+  "id4": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"
+  },
+  "id5": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png"
+  },
+  "id6": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"
+  },
+  "id7": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
+  },
+  "id8": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png"
+  },
+  "id9": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/9.png"
+  },
+  "id10": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png"
+  },
+  "id11": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/11.png"
+  },
+  "id12": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/12.png"
+  },
+  "id13": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/13.png"
+  },
+  "id14": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/14.png"
+  },
+  "id15": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png"
+  },
+  "id16": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/16.png"
+  },
+  "id17": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/17.png"
+  },
+  "id18": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/18.png"
+  },
+  "id19": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/19.png"
+  },
+  "id20": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/20.png"
+  },
+  "id21": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/21.png"
+  },
+  "id22": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/22.png"
+  },
+  "id23": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/23.png"
+  },
+  "id24": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/24.png"
+  },
+  "id25": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
+  },
+  "id26": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/26.png"
+  },
+  "id27": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/27.png"
+  },
+  "id28": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/28.png"
+  },
+  "id29": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/29.png"
+  },
+  "id30": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/30.png"
+  },
+  "id31": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/31.png"
+  },
+  "id32": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/32.png"
+  },
+  "id33": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/33.png"
+  },
+  "id34": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/34.png"
+  },
+  "id35": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/35.png"
+  },
+  "id36": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/36.png"
+  },
+  "id37": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/37.png"
+  },
+  "id38": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/38.png"
+  },
+  "id39": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/39.png"
+  },
+  "id40": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/40.png"
+  },
+  "id41": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/41.png"
+  },
+  "id42": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/42.png"
+  },
+  "id43": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/43.png"
+  },
+  "id44": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/44.png"
+  },
+  "id45": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/45.png"
+  },
+  "id46": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/46.png"
+  },
+  "id47": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/47.png"
+  },
+  "id48": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/48.png"
+  },
+  "id49": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/49.png"
+  },
+  "id50": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/50.png"
+  },
+  "id51": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/51.png"
+  },
+  "id52": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/52.png"
+  },
+  "id53": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/53.png"
+  },
+  "id54": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/54.png"
+  },
+  "id55": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/55.png"
+  },
+  "id56": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/56.png"
+  },
+  "id57": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/57.png"
+  },
+  "id58": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/58.png"
+  },
+  "id59": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/59.png"
+  },
+  "id60": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/60.png"
+  },
+  "id61": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/61.png"
+  },
+  "id62": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/62.png"
+  },
+  "id63": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/63.png"
+  },
+  "id64": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/64.png"
+  },
+  "id65": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/65.png"
+  },
+  "id66": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/66.png"
+  },
+  "id67": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/67.png"
+  },
+  "id68": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/68.png"
+  },
+  "id69": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/69.png"
+  },
+  "id70": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/70.png"
+  },
+  "id71": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/71.png"
+  },
+  "id72": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/72.png"
+  },
+  "id73": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/73.png"
+  },
+  "id74": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/74.png"
+  },
+  "id75": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/75.png"
+  },
+  "id76": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/76.png"
+  },
+  "id77": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/77.png"
+  },
+  "id78": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/78.png"
+  },
+  "id79": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/79.png"
+  },
+  "id80": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/80.png"
+  },
+  "id81": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/81.png"
+  },
+  "id82": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/82.png"
+  },
+  "id83": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/83.png"
+  },
+  "id84": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/84.png"
+  },
+  "id85": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/85.png"
+  },
+  "id86": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/86.png"
+  },
+  "id87": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/87.png"
+  },
+  "id88": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/88.png"
+  },
+  "id89": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/89.png"
+  },
+  "id90": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/90.png"
+  },
+  "id91": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/91.png"
+  },
+  "id92": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/92.png"
+  },
+  "id93": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/93.png"
+  },
+  "id94": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/94.png"
+  },
+  "id95": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/95.png"
+  },
+  "id96": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/96.png"
+  },
+  "id97": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/97.png"
+  },
+  "id98": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/98.png"
+  },
+  "id99": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/99.png"
+  },
+  "id100": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/100.png"
+  },
+  "id101": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/101.png"
+  },
+  "id102": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/102.png"
+  },
+  "id103": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/103.png"
+  },
+  "id104": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/104.png"
+  },
+  "id105": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/105.png"
+  },
+  "id106": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/106.png"
+  },
+  "id107": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/107.png"
+  },
+  "id108": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/108.png"
+  },
+  "id109": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/109.png"
+  },
+  "id110": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/110.png"
+  },
+  "id111": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/111.png"
+  },
+  "id112": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/112.png"
+  },
+  "id113": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/113.png"
+  },
+  "id114": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/114.png"
+  },
+  "id115": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/115.png"
+  },
+  "id116": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/116.png"
+  },
+  "id117": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/117.png"
+  },
+  "id118": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/118.png"
+  },
+  "id119": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/119.png"
+  },
+  "id120": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/120.png"
+  },
+  "id121": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/121.png"
+  },
+  "id122": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/122.png"
+  },
+  "id123": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/123.png"
+  },
+  "id124": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/124.png"
+  },
+  "id125": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/125.png"
+  },
+  "id126": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/126.png"
+  },
+  "id127": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/127.png"
+  },
+  "id128": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/128.png"
+  },
+  "id129": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/129.png"
+  },
+  "id130": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/130.png"
+  },
+  "id131": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/131.png"
+  },
+  "id132": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"
+  },
+  "id133": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png"
+  },
+  "id134": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/134.png"
+  },
+  "id135": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/135.png"
+  },
+  "id136": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/136.png"
+  },
+  "id137": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/137.png"
+  },
+  "id138": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/138.png"
+  },
+  "id139": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/139.png"
+  },
+  "id140": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/140.png"
+  },
+  "id141": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/141.png"
+  },
+  "id142": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/142.png"
+  },
+  "id143": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/143.png"
+  },
+  "id144": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/144.png"
+  },
+  "id145": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/145.png"
+  },
+  "id146": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/146.png"
+  },
+  "id147": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/147.png"
+  },
+  "id148": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/148.png"
+  },
+  "id149": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/149.png"
+  },
+  "id150": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png"
+  },
+  "id151": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png"
+  },
+  "id152": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/152.png"
+  },
+  "id153": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/153.png"
+  },
+  "id154": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/154.png"
+  },
+  "id155": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/155.png"
+  },
+  "id156": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/156.png"
+  },
+  "id157": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/157.png"
+  },
+  "id158": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/158.png"
+  },
+  "id159": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/159.png"
+  },
+  "id160": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/160.png"
+  },
+  "id161": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/161.png"
+  },
+  "id162": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/162.png"
+  },
+  "id163": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/163.png"
+  },
+  "id164": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/164.png"
+  },
+  "id165": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/165.png"
+  },
+  "id166": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/166.png"
+  },
+  "id167": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/167.png"
+  },
+  "id168": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/168.png"
+  },
+  "id169": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/169.png"
+  },
+  "id170": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/170.png"
+  },
+  "id171": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/171.png"
+  },
+  "id172": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/172.png"
+  },
+  "id173": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/173.png"
+  },
+  "id174": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/174.png"
+  },
+  "id175": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/175.png"
+  },
+  "id176": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/176.png"
+  },
+  "id177": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/177.png"
+  },
+  "id178": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/178.png"
+  },
+  "id179": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/179.png"
+  },
+  "id180": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/180.png"
+  },
+  "id181": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/181.png"
+  },
+  "id182": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/182.png"
+  },
+  "id183": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/183.png"
+  },
+  "id184": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/184.png"
+  },
+  "id185": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/185.png"
+  },
+  "id186": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/186.png"
+  },
+  "id187": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/187.png"
+  },
+  "id188": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/188.png"
+  },
+  "id189": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/189.png"
+  },
+  "id190": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/190.png"
+  },
+  "id191": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/191.png"
+  },
+  "id192": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/192.png"
+  },
+  "id193": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/193.png"
+  },
+  "id194": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/194.png"
+  },
+  "id195": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/195.png"
+  },
+  "id196": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/196.png"
+  },
+  "id197": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/197.png"
+  },
+  "id198": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/198.png"
+  },
+  "id199": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/199.png"
+  },
+  "id200": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/200.png"
+  },
+  "id201": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/201.png"
+  },
+  "id202": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/202.png"
+  },
+  "id203": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/203.png"
+  },
+  "id204": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/204.png"
+  },
+  "id205": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/205.png"
+  },
+  "id206": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/206.png"
+  },
+  "id207": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/207.png"
+  },
+  "id208": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/208.png"
+  },
+  "id209": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/209.png"
+  },
+  "id210": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/210.png"
+  },
+  "id211": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png"
+  },
+  "id212": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/212.png"
+  },
+  "id213": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/213.png"
+  },
+  "id214": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/214.png"
+  },
+  "id215": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/215.png"
+  },
+  "id216": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/216.png"
+  },
+  "id217": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/217.png"
+  },
+  "id218": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/218.png"
+  },
+  "id219": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/219.png"
+  },
+  "id220": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/220.png"
+  },
+  "id221": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/221.png"
+  },
+  "id222": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/222.png"
+  },
+  "id223": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/223.png"
+  },
+  "id224": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/224.png"
+  },
+  "id225": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/225.png"
+  },
+  "id226": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/226.png"
+  },
+  "id227": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/227.png"
+  },
+  "id228": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/228.png"
+  },
+  "id229": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/229.png"
+  },
+  "id230": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png"
+  },
+  "id231": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/231.png"
+  },
+  "id232": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/232.png"
+  },
+  "id233": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/233.png"
+  },
+  "id234": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/234.png"
+  },
+  "id235": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/235.png"
+  },
+  "id236": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/236.png"
+  },
+  "id237": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/237.png"
+  },
+  "id238": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/238.png"
+  },
+  "id239": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/239.png"
+  },
+  "id240": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/240.png"
+  },
+  "id241": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/241.png"
+  },
+  "id242": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/242.png"
+  },
+  "id243": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/243.png"
+  },
+  "id244": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/244.png"
+  },
+  "id245": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/245.png"
+  },
+  "id246": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/246.png"
+  },
+  "id247": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/247.png"
+  },
+  "id248": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/248.png"
+  },
+  "id249": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/249.png"
+  },
+  "id250": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/250.png"
+  },
+  "id251": {
+    "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/251.png"
+  }
+}

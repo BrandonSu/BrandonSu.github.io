@@ -1,0 +1,7 @@
+
+AuthType Basic
+AuthUserFile /home/bys221/protected/.htpasswd
+AuthName "Members Only!"
+require valid-user
+
+

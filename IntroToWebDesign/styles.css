@@ -1,0 +1,45 @@
+h1 {
+	font-size: 350%;
+	font-family: "VT323", cursive;
+	text-align: center;
+	color: white;
+}
+h3 {
+	font-size: 200%;
+	font-family: "VT323",cursive;
+
+}
+body {
+	background-color: black;
+	color: white;
+	font-family: "VT323",cursive;
+
+}
+p{
+	font-size: 120%;
+}
+li:hover{
+	background-color: #FF69B4;
+}
+#list {
+	width:300px;
+	/*margin:auto;*/
+}
+a:link{
+	color:blue;
+	background-color: black;
+}
+a:visited {
+	color: red;
+	/*background-color: white;*/
+}
+a:focus{
+	background-color: yellow;
+}
+a:hover {
+	background-color: pink;
+}
+a:active{
+	background-color: orange;
+
+}
