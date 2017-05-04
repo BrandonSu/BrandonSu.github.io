@@ -36,11 +36,18 @@ a:hover {
   background: rgba(35,119,186, .6);
   border-color: rgba(35,119,186, .6);
 }
+.nopadding{
+   padding-left: 3px !important;
+   padding-right: 3px !important;
+   margin: 0 !important;
+}
 body{
   color:white;
   background: url("space.jpg") no-repeat center center fixed;
   background-size: cover;
-  font-family: "VT323"
+  font-family: "VT323";
+  padding-left:4px;
+  padding-right:4px;
 }
 #graphicsmenu{
   width:100%;

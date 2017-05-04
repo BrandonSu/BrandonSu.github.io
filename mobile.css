@@ -31,16 +31,25 @@ a:hover {
   left: 0px;
   display:none;
   text-align:center;
+  padding-bottom:9px;
 }
 .menu_dropdown button{
   background: rgba(35,119,186, .6);
   border-color: rgba(35,119,186, .6);
+
+}      
+.nopadding{
+   padding-left: 3px !important;
+   padding-right: 3px !important;
+   margin: 0 !important;
 }
 body{
   color:white;
   background: url("space.jpg") no-repeat center center fixed;
   background-size: cover;
-  font-family: "VT323"
+  font-family: "VT323";
+  padding-left:4px;
+  padding-right:4px;
 }
 #graphicsmenu{
   width:100%;
@@ -59,4 +68,8 @@ body{
 }
 button {
   width:100%;
+  margin-bottom:2px;
+}
+.col-sm-4{
+  width: 100%;
 }

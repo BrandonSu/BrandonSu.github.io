@@ -6,8 +6,8 @@
     <link href = "css/bootstrap.min.css" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
 
-    <link rel="stylesheet" media = "only screen and (min-width:767px)" href = "home.css">
-    <link rel="stylesheet" media = "only screen and (max-width:767px)" href = "mobile.css"> 
+    <link rel="stylesheet" media = "only screen and (min-width:814px)" href = "home.css">
+    <link rel="stylesheet" media = "only screen and (max-width:814px)" href = "mobile.css"> 
     <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -19,7 +19,7 @@
 
 </script>
     <style type = "text/css">
-        
+       
 
 
     </style>
@@ -29,9 +29,9 @@
     <body>
         <h1>Welcome to Brandon Su's Website!</h1>
         <hr>
-        <div id = "Graphics" class = "col-md-4 col-sm-4 col-xs-12">
+        <div id = "Graphics" class = "col-md-4 col-sm-4 col-xs-12 nopadding">
 
-            <button id ="graphics" type="button" class="btn btn-primary"><a href="ComputerGraphics">Computer Graphics Spring 2017</button>
+            <button id ="graphics" type="button" class="btn btn-primary"><a href="ComputerGraphics">Computer Graphics Spring 2017</a></button>
 
             <div id = "graphicsmenu" class="menu_dropdown">
                 <a href="ComputerGraphics/Assignment1/index.html" target="_blank"> <button type="button" class="btn btn-primary"> Assignment 1 (First Solar System) </button></a>
@@ -48,8 +48,8 @@
               
             </div>
         </div>
-        <div id = "Web" class = "col-md-4 col-sm-4 col-xs-12">
-            <button id ="web" type="button" class="btn btn-primary"><a href="IntroToWebDesign">Intro to Web Design Spring 2017</button> </a>
+        <div id = "Web" class = "col-md-4 col-sm-4 col-xs-12 nopadding">
+            <button id ="web" type="button" class="btn btn-primary"><a href="IntroToWebDesign">Web Design Spring 2017</a></button> 
 
              <div id = "webmenu" class = "menu_dropdown">
                 <a href="IntroToWebDesign/assignment2/index.html"> <button type="button" class="btn btn-primary">HTML/CSS  (Assignment 2) </button></a>
@@ -63,50 +63,187 @@
 
         </div>
 
-        <div class = "col-md-4 col-sm-4 col-xs-12">
+        <div class = "col-md-4 col-sm-4 col-xs-12 nopadding">
             <a href="Assteroids/assteroid.html"><button id ="ass" type="button" class="btn btn-primary">Assteroids Game Feb 2017</button>   </a>  
         </div>
 
-        <script src="IntroToWebDesign/scripts/jquery-1.12.3.min.js" type="text/javascript"></script>
+        <script src="scripts/jquery-1.12.3.min.js" type="text/javascript"></script>
 
         <script type="text/javascript">
       //    $(document).ready(function() {
 
               var gHoverMode = false;
+              var wHoverMode = false;
 
               setInterval(function() {
                 console.log(gHoverMode);
               }, 500);
 
-
-              $("#Graphics").hover(
-                function(){
-                  if (gHoverMode == false) {
-                    $("#graphicsmenu").slideDown(500);
-                    gHoverMode = true;
+              if ($(window).width() > 814) {
+                 $("#Graphics").hover(
+                  function(){
+                    if (gHoverMode == false) {
+                      $("#graphicsmenu").slideDown(500);
+                      gHoverMode = true;
+                       console.log("down");
+                    }
+                  },
+                  function(){
+                    $("#graphicsmenu").slideUp(500, function() { gHoverMode = false; });
+                     console.log("up");
                   }
-                },
-                function(){
-                  $("#graphicsmenu").slideUp(500, function() { gHoverMode = false; });
-                }
 
-              );
+                );
 
-              $("#Web").hover(
-                function(){
-                  $("#webmenu").slideDown();
-                },
-                function(){
-                  $("#webmenu").slideUp();
-                }
+                $("#Web").hover(
+                  function(){
+                    if (wHoverMode == false) {
+                      $("#webmenu").slideDown();
+                      wHoverMode = true;
+                       console.log("down");
+                    }
+                  },
+                  function(){
+                    $("#webmenu").slideUp(500, function(){ wHoverMode = false;});
+                     console.log("up");
+                  }
 
-              );
+                );
+              } else{
+                $("button#web").html("Web Design Spring 2017");
+                $("button#graphics").html("Computer Graphics Spring 2017");
+                $("#Graphics").click(
+                    function(event){
+                        event.stopPropagation();
+                        if (gHoverMode == false){
+                             $("#graphicsmenu").slideDown(500);
+                              gHoverMode = true;
+                               console.log("down");
+                        } else{
+                          $("#graphicsmenu").slideUp(500);
+                             gHoverMode = false;
+                              console.log("up");
+                        }
+                        
+                      }
+                );
+                $("#graphicsmenu").click(function(event){
+                    event.stopPropagation();
+                });
+               
 
-            
-      //    }
+                $("#Web").click(
+                     function(event){
+                        event.stopPropagation();
+                        if (wHoverMode == false){
+                             $("#webmenu").slideDown(500);
+                              wHoverMode = true;
+                              console.log("down");
+                        } else{
+                          $("#webmenu").slideUp(500);
+                             wHoverMode = false;
+                              console.log("up");
+                        }
+                        
+                      }                
+                );
 
+                $("#webmenu").click(function(event){
+                    event.stopPropagation();
+                });
+
+                 $(document).click(
+                    function(event){
+                             $("#graphicsmenu").slideUp(500);
+                              $("webmenu").slideUp(500);
+                              gHoverMode = false;
+                              wHoverMode = false;
+                      }
+                );
+              }
+              
+              $(window).resize(function() {
+                  if($(this).width() > 814 ) {
+                      $("button#web").html("<a href='IntroToWebDesign'>Web Design Spring 2017");
+                      $("button#graphics").html("<a href='ComputerGraphics'>Computer Graphics Spring 2017");
+                      
+                      $("#Graphics").off('click');
+                      $("#Web").off('click');
+                      $("#Graphics").off();
+                      $("#Web").off();
+                        $(document).off('click');
+                        $(document).off();
+
+                      $("#Graphics").hover(
+                          function(){
+                            if (gHoverMode == false) {
+                              $("#graphicsmenu").slideDown(500);
+                              gHoverMode = true;
+                              console.log("down");
+                            }
+                          },
+                          function(){
+                            $("#graphicsmenu").slideUp(500, function() { gHoverMode = false; });
+                            console.log("up");
+                          }
+                      );
+
+                      $("#Web").hover(
+                        function(){
+                           if (wHoverMode == false) {
+                             $("#webmenu").slideDown();
+                             console.log("down");
+                             wHoverMode = true;
+                           }
+                        },
+                        function(){
+                          $("#webmenu").slideUp(500, function() {wHoverMode = false; });
+                          console.log("up");
+                        }
+                      );
+                  }
+                  else{ //smaller dynamic
+                      $("button#web").html("Web Design Spring 2017");
+                      $("button#graphics").html("Computer Graphics Spring 2017");
+
+                  //    $("#Graphics").off('mouseenter mouseleave');
+                  //    $("#Web").off('mouseenter mouseleave');
+                      $("#Graphics").off();
+                      $("#Web").off();
+                      gHoverMode = false;
+                      wHoverMode = false;
+
+                      $("#Graphics").click(
+                          function(){
+                            if (gHoverMode == false){
+                              $("#graphicsmenu").slideDown(500);
+                              console.log("down");
+                              gHoverMode = true;
+                            } else{
+                              $("#graphicsmenu").slideUp(500);
+                              gHoverMode = false;
+                              console.log("up");
+                            }
+                          }
+                      );
+
+                      $("#Web").click(
+                         function(){
+                            if (wHoverMode == false){
+                              $("#webmenu").slideDown(500);
+                              console.log("down");
+                              wHoverMode = true;
+                            } else{
+                              $("#webmenu").slideUp(500);
+                              wHoverMode = false;
+                              console.log("up");
+                            }
+                        }
+                                               
+                      );
+                  }
+              });
        </script>
-
 
     </body>
 
