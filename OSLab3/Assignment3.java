@@ -1,5 +1,3 @@
-
-
 import java.io.File;
 import java.io.*;
 import java.net.URL;
@@ -45,7 +43,6 @@ public class Assignment3 {
 		Scanner input = new Scanner(f);
 */
 		
-		//for mauler testing if you want verbose flag
 		String filename = args[args.length-1];
 		if (args[0].equals("--verbose")) {
 			verbose = true;
@@ -84,14 +81,28 @@ public class Assignment3 {
 		//		ArrayList<Activity> acts = new ArrayList<Activity>(); // arraylist of each like activity line
 		while (input.hasNext()){
 			Activity act = new Activity();
+			Activity act2 = new Activity();
 			//initiate  1 0 1 3
-			act.type = input.next(); //initiate
+			String type = input.next();
+			act.type = type; //initiate
+			act2.type = type;
+			
 			int id = input.nextInt(); //1
-			act.delay = input.nextInt(); //0
-			act.resourceType = input.nextInt(); //1
-			act.resourceAmount = input.nextInt(); //3
-			tasks.get(id-1).activities.add(act); //id - 1
-			tasks2.get(id-1).activities.add(act); //id - 1
+			
+			int delay = input.nextInt();
+			act.delay = delay; //0
+			act2.delay= delay;
+			
+			int resourceType = input.nextInt();
+			act.resourceType = resourceType; //1
+			act2.resourceType = resourceType;
+			
+			int resourceAmount = input.nextInt();
+			act.resourceAmount = resourceAmount; //3
+			act2.resourceAmount = resourceAmount;
+			
+			tasks.get(id-1).activities.add(act); //id - 1			
+			tasks2.get(id-1).activities.add(act2); //id - 1
 		}
 
 		// now lets make the allocation chart 2D array thing
@@ -117,7 +128,7 @@ public class Assignment3 {
 			}
 		}*/
 		input.close();
-		//userIn.close();
+	//	userIn.close();
 	}
 	public static void FIFO(int[][] chart, ArrayList<Task> tasks, int[] resources){//ArrayList<ArrayList<Activity>> activities, int[] resources, ArrayList<Task> ok, ArrayList<Task> blocked){
 		int time = 0;
@@ -165,29 +176,23 @@ public class Assignment3 {
 		// have arraylists of ok and blocked, will have to remove things occasionally
 		while (true){ // asdfads
 			Collections.sort(tasks, compareId); // sort tasks by id
-			
-			boolean abort = true; //true state = need to abort, anytime a request/release/whatever is granted, set to false
-			
 			//printing
-			if (verbose){
-				System.out.printf("During %d-%d ", time, time + 1);
-				System.out.print("(");
-				for (int i = 0; i < resAvail.length; i++) {
-					if (i != resAvail.length - 1) {
-						System.out.print(resAvail[i] + ", ");
-					} else {
-						System.out.print(resAvail[i] + " ");
-					}
-					System.out.print("units available)\n");
+			System.out.printf("During %d-%d ", time, time + 1);
+			System.out.print("(");
+			boolean abort = true; //true state = need to abort, anytime a request/release/whatever is granted, set to false
+			for (int i = 0; i < resAvail.length; i++) {
+				if (i != resAvail.length - 1) {
+					System.out.print(resAvail[i] + ", ");
+				} else {
+					System.out.print(resAvail[i] + " ");
 				}
+				System.out.print("units available)\n");
 			}
 			//	System.out.println("task size: "+tasks.size());
 			//		System.out.println("blocked size: "+blocked.size());
 
 			if (!blocked.isEmpty()){
-				if (verbose){
-					System.out.println("\tFirst check blocked requests:");
-				}
+				System.out.println("\tFirst check blocked requests:");
 				for (int i = 0; i < blocked.size(); i++) { //increment waiting times
 					blocked.get(i).waitTime++;
 				}
@@ -198,18 +203,33 @@ public class Assignment3 {
 					if (blocked.get(i).activities.get(it).type.equals("request")){
 						int resType = blocked.get(i).activities.get(it).resourceType; //type of resource (will have to -1)
 						int resAmount = blocked.get(i).activities.get(it).resourceAmount;
+						/*
+						boolean safe = true;
+						for (int j = 0; j<resAvail.length; j++){
+							if (resAvail[j]< claimChart[id-1][j]){
+								safe = false;
+							}
+						}*/
+						/*
+						if (safe){
+							resAvail[resType-1] -= resAmount;
+							claimChart[id-1][resType-1] -= resAmount; //update claim ttable too
+							blocked.get(i).iterator++;
+							System.out.printf("\t\tTask %d completes its request\n", blocked.get(i).id);
+							aux.add(blocked.remove(i));
+							i--;
+						}
+						else {
+							System.out.printf("\t\tTask %d still unable to complete its request\n", blocked.get(i).id);
+						}*/
 						if ( resAmount  > resAvail[resType-1]){//if claiming more than available
 							//do nothing basically
-							if (verbose){
-								System.out.printf("\t\tTask %d still unable to complete its request\n", blocked.get(i).id);
-							}
+							System.out.printf("\t\tTask %d still unable to complete its request\n", blocked.get(i).id);
 						} else{// grant the request and add to aux arraylist
 							resAvail[resType-1] -= resAmount;
 							//	claimChart[id-1][resType-1] -= resAmount; //update claim ttable too
 							blocked.get(i).iterator++;
-							if (verbose){	
-								System.out.printf("\t\tTask %d completes its request\n", blocked.get(i).id);
-							}
+							System.out.printf("\t\tTask %d completes its request\n", blocked.get(i).id);
 							aux.add(blocked.remove(i));
 							i--;
 							abort = false;
@@ -217,6 +237,13 @@ public class Assignment3 {
 					}
 				}
 			}
+			//	System.out.println("");
+			/*
+			for (int i = 0; i<tasks.size(); i++){
+				int it = tasks.get(i).iterator;
+				int resType = tasks.get(i).activities.get(it).resourceType;
+				System.out.println(claimChart[i][resType-1]);
+			}*/
 
 			//check if request + current > claim
 
@@ -231,16 +258,18 @@ public class Assignment3 {
 					int resAmount = tasks.get(i).activities.get(it).resourceAmount; //amoutn of that resource for this activity line
 					if (delay >0){
 						tasks.get(i).activities.get(it).delay--;
-						if (verbose){
-							System.out.printf("\tTask %d is delayed %d\n", tasks.get(i).id, delay);
-						}
+						System.out.printf("\tTask %d is delayed %d\n", tasks.get(i).id, delay);
 						abort = false;
 					} else{
 						if (tasks.get(i).activities.get(it).type.equals("initiate")){ //chekc if initate
 							//HAVE TO CHECK FOR ABORTION IMMEDIATELY LIKE WHEN IT CLAIMS 5
-							if (verbose){
-								System.out.printf("\tTask %d completed initiate\n", tasks.get(i).id);
-							}
+							/*if (claimChart[id-1][resType-1] > resAvail[resType-1]){//if claim is higher than total amount
+								System.out.printf("\tTask %d is aborted\n", tasks.get(i).id);
+								aborted.add(tasks.remove(i));
+
+								i--;
+							} else{*/
+							System.out.printf("\tTask %d completed initiate\n", tasks.get(i).id);
 							//	claimChart[id-1][resType-1] = resAmount;
 							tasks.get(i).iterator++;
 							abort = false;
@@ -253,7 +282,34 @@ public class Assignment3 {
 
 							//check if request + current > original claim
 							//or the way mine is set up, if request amount is greater than however much it still needs after
-							
+							/*if (resAmount > resAvail[resType-1]){
+								System.out.printf("\tTask %d aborted for requesting too much\n", tasks.get(i).id);
+								blocked.add(tasks.remove(i));
+								//also have to release the resources
+								//released[resType-1] += resAmount;
+								i--;
+							}*/
+							/*
+							else{
+								boolean safe = true;
+								for (int j = 0; j<resAvail.length; j++){
+									if (resAvail[j]< claimChart[id-1][j]){
+										safe = false;
+									}
+								}
+								if (safe){
+									resAvail[resType-1] -= resAmount;
+									claimChart[id-1][resType-1] -= resAmount; //update claim ttable too
+									tasks.get(i).iterator++;
+									System.out.printf("\tTask %d completes its request\n", tasks.get(i).id);
+								} else{
+									System.out.printf("\tTask %d request cannot be granted\n", tasks.get(i).id);
+									blocked.add(tasks.remove(i));
+
+									i--; //have to decrement i once so that it doesnt skip the next task since we removied it
+
+								}
+							}*/
 
 							if (resAvail[resType-1] >= resAmount){ // if theres enough to satisfy request for the claim aka no deadlock
 								resAvail[resType-1] -= resAmount;
@@ -261,25 +317,21 @@ public class Assignment3 {
 								claimChart[id-1][resType-1] += resAmount; //add to claim ttable
 								//maybe have claim char start at 0 , add to it every time, release 
 								tasks.get(i).iterator++;
-								if (verbose){
-									System.out.printf("\tTask %d completes its request\n", tasks.get(i).id);
-								}
+								System.out.printf("\tTask %d completes its request\n", tasks.get(i).id);
 								abort = false;
 							} else{//put into block list
-								if (verbose){
-									System.out.printf("\tTask %d request cannot be granted\n", tasks.get(i).id);
-								}
+								System.out.printf("\tTask %d request cannot be granted\n", tasks.get(i).id);
 								blocked.add(tasks.remove(i));
+
 								i--; //have to decrement i once so that it doesnt skip the next task since we removied it
+
 							}
 
 						} else if (tasks.get(i).activities.get(it).type.equals("release")){ // release at the end
 							abort = false;
-							if (verbose){
-								System.out.printf("\tTask %d releases %d unit(s)", tasks.get(i).id, resAmount);
-							}
+							System.out.printf("\tTask %d releases %d unit(s)", tasks.get(i).id, resAmount);
 							released[resType-1] += resAmount;
-			
+							//	System.out.println("pending to be released "+released[resType-1]);
 							claimChart[id-1][resType-1] -=resAmount; //re update claim table
 							tasks.get(i).iterator++;
 							it = tasks.get(i).iterator; //update it for the terminate check
@@ -287,28 +339,21 @@ public class Assignment3 {
 							if (tasks.get(i).activities.get(it).type.equals("terminate")){
 								if (delay >0){
 									tasks.get(i).activities.get(it).delay--;
-									if (verbose){
-										System.out.printf("\tTask %d is delayed %d\n", tasks.get(i).id, delay);
-									}
+									System.out.printf("\tTask %d is delayed %d\n", tasks.get(i).id, delay);
 								} else{
-									if (verbose){
-										System.out.printf(" and terminates at %d\n", time+1);
-									}
+									System.out.printf(" and terminates at %d\n", time+1);
 									tasks.get(i).finishTime = time+1;
 									done.add(tasks.remove(i)); //remove from tasks and add to done list
 									i--; //have to decrement i once so that it doesnt skip the next task since we removied it
+
 								}
 							}else{
-								if (verbose){
-									System.out.println("");
-								}
+								System.out.println("");
 							}
 
 						} else if (tasks.get(i).activities.get(it).type.equals("terminate")){
 							abort = false;
-							if (verbose){
-								System.out.printf(" and terminates at %d\n", time+1);
-							}
+							System.out.printf(" and terminates at %d\n", time+1);
 							tasks.get(i).finishTime = time+1;
 							done.add(tasks.remove(i)); //remove from tasks and add to done list
 							i--; //have to decrement i once so that it doesnt skip the next task since we removied it
@@ -317,11 +362,14 @@ public class Assignment3 {
 					}
 				}
 			}
+			//	System.out.println("blocked list"+blocked.size());
+			//	System.out.println("before);
 			//add the released back into available
 			for (int i =0; i<released.length; i++){
 				resAvail[i]+=released[i];
 				released[i]=0; //reset back to 0
 				//THIS IS THE KEY ERROR IN MY FIFO TOO
+
 			}
 			//aborted.addAll(c)
 			//add back from aux to tasks
@@ -349,9 +397,7 @@ public class Assignment3 {
 
 					//	aborted.add(blocked.remove(min));
 					blocked.remove(min);
-					if (verbose){
-						System.out.printf("Task %d was ABORTED \n", min.id);
-					}
+					System.out.printf("Task %d was ABORTED \n", min.id);
 					//System.out.println("");
 
 					aborted.add(min);
@@ -372,9 +418,6 @@ public class Assignment3 {
 				break;
 			}
 
-			if (time > 20){
-				break;
-			}
 
 			time++;
 		} //after while loop
@@ -419,6 +462,42 @@ public class Assignment3 {
 		int avgPer = Math.round(totPer);
 		System.out.printf("total \t %3d %3d %3d%% ", totalTime, totalWait, avgPer);
 		System.out.println("");
+	}
+
+
+	public static void abort(int[][] requests, ArrayList<Task> blocked, int numTask, int numRes, int[] resAvail, int[][] chart){
+		boolean released = false;
+		Task min;
+		ArrayList<Task> aborted = new ArrayList<Task>();
+		while (!released && !blocked.isEmpty()) {
+			// find the task in blocked list with smallest id
+			min = new Task(numTask + 1);
+			for (Task t:blocked) {
+				if (t.id <= min.id) {
+					min = t;
+				}
+			}
+			blocked.remove(min);	// abort min task
+			aborted.add(min);	// add to aborted list
+
+			System.out.printf("Task %d is aborted\n", min.id);
+
+			min.aborted = true;
+			// release min's resources
+			for (int i = 0; i < numRes; i++) {
+				resAvail[i] += chart[min.id-1][i];
+				chart[min.id-1][i] = 0;
+			}
+
+			// check if we need to abort another task
+			for (int i = 0; i < numTask; i++) {
+				for (int j = 0; j < numRes; j++) {
+					if (requests[i][j] <= resAvail[j]) {
+						released = true;
+					}
+				}
+			}
+		}
 	}
 
 	public static void bankers(int[][] chart, ArrayList<Task> tasks, int[] resources){
@@ -468,25 +547,21 @@ public class Assignment3 {
 		while (true){ // asdfads
 			Collections.sort(tasks, compareId); // sort tasks by id
 			//printing
-			if (verbose){
-				System.out.printf("During %d-%d ", time, time + 1);
-				System.out.print("(");
-				for (int i = 0; i < resAvail.length; i++) {
-					if (i != resAvail.length - 1) {
-						System.out.print(resAvail[i] + ", ");
-					} else {
-						System.out.print(resAvail[i] + " ");
-					}
-					System.out.print("units available)\n");
+			System.out.printf("During %d-%d ", time, time + 1);
+			System.out.print("(");
+			for (int i = 0; i < resAvail.length; i++) {
+				if (i != resAvail.length - 1) {
+					System.out.print(resAvail[i] + ", ");
+				} else {
+					System.out.print(resAvail[i] + " ");
 				}
+				System.out.print("units available)\n");
 			}
 			//	System.out.println("task size: "+tasks.size());
 			//		System.out.println("blocked size: "+blocked.size());
 
 			if (!blocked.isEmpty()){
-				if (verbose){
-					System.out.println("\tFirst check blocked requests:");
-				}
+				System.out.println("\tFirst check blocked requests:");
 				for (int i = 0; i < blocked.size(); i++) { //increment waiting times
 					blocked.get(i).waitTime++;
 				}
@@ -507,22 +582,35 @@ public class Assignment3 {
 							resAvail[resType-1] -= resAmount;
 							claimChart[id-1][resType-1] -= resAmount; //update claim ttable too
 							blocked.get(i).iterator++;
-							if (verbose){
-								System.out.printf("\t\tTask %d completes its request\n", blocked.get(i).id);
-							}
+							System.out.printf("\t\tTask %d completes its request\n", blocked.get(i).id);
 							aux.add(blocked.remove(i));
 							i--;
 						}
 						else {
-							if (verbose){
-								System.out.printf("\t\tTask %d still unable to complete its request\n", blocked.get(i).id);
-							}
-						}
+							System.out.printf("\t\tTask %d still unable to complete its request\n", blocked.get(i).id);
+						}/*
+						if ( claimChart[id-1][resType-1]  > resAvail[resType-1]){//if claiming more than available
+							//do nothing basically
+							System.out.printf("\t\tTask %d still unable to complete its request\n", blocked.get(i).id);
+						} else{// grant the request and add to aux arraylist
+							resAvail[resType-1] -= resAmount;
+							claimChart[id-1][resType-1] -= resAmount; //update claim ttable too
+							blocked.get(i).iterator++;
+							System.out.printf("\t\tTask %d completes its request\n", blocked.get(i).id);
+							aux.add(blocked.remove(i));
+							i--;
+						}*/
 					}
 				}
 			}
 			//	System.out.println("");
-			
+			/*
+			for (int i = 0; i<tasks.size(); i++){
+				int it = tasks.get(i).iterator;
+				int resType = tasks.get(i).activities.get(it).resourceType;
+				System.out.println(claimChart[i][resType-1]);
+			}*/
+
 			//check if request + current > claim
 
 			for (int i = 0; i < tasks.size(); i++){
@@ -536,23 +624,17 @@ public class Assignment3 {
 					int resAmount = tasks.get(i).activities.get(it).resourceAmount; //amoutn of that resource for this activity line
 					if (delay >0){
 						tasks.get(i).activities.get(it).delay--;
-						if (verbose){
-							System.out.printf("\tTask %d is delayed %d\n", tasks.get(i).id, delay);
-						}
+						System.out.printf("\tTask %d is delayed %d\n", tasks.get(i).id, delay);
 					} else{
 						if (tasks.get(i).activities.get(it).type.equals("initiate")){ //chekc if initate
 							//HAVE TO CHECK FOR ABORTION IMMEDIATELY LIKE WHEN IT CLAIMS 5
 							if (claimChart[id-1][resType-1] > resAvail[resType-1]){//if claim is higher than total amount
-								if (verbose){
-									System.out.printf("\tTask %d is aborted\n", tasks.get(i).id);
-								}
+								System.out.printf("\tTask %d is aborted\n", tasks.get(i).id);
 								aborted.add(tasks.remove(i));
 
 								i--;
 							} else{
-								if (verbose){
-									System.out.printf("\tTask %d completed initiate\n", tasks.get(i).id);
-								}
+								System.out.printf("\tTask %d completed initiate\n", tasks.get(i).id);
 								claimChart[id-1][resType-1] = resAmount;
 								tasks.get(i).iterator++;
 								//	resAvail[resType-1] -= resAmount;  //dont forget that the type is 1 but index is 0
@@ -565,9 +647,7 @@ public class Assignment3 {
 							//check if request + current > original claim
 							//or the way mine is set up, if request amount is greater than however much it still needs after
 							if (resAmount > claimChart[id-1][resType-1]){
-								if (verbose){
-									System.out.printf("\tTask %d aborted for requesting too much\n", tasks.get(i).id);
-								}
+								System.out.printf("\tTask %d aborted for requesting too much\n", tasks.get(i).id);
 								aborted.add(tasks.remove(i));
 								//also have to release the resources
 								released[resType-1] += resAmount;
@@ -585,21 +665,17 @@ public class Assignment3 {
 									resAvail[resType-1] -= resAmount;
 									claimChart[id-1][resType-1] -= resAmount; //update claim ttable too
 									tasks.get(i).iterator++;
-									if (verbose){
-										System.out.printf("\tTask %d completes its request\n", tasks.get(i).id);
-									}
+									System.out.printf("\tTask %d completes its request\n", tasks.get(i).id);
 								} else{
-									if (verbose){
-										System.out.printf("\tTask %d request cannot be granted\n", tasks.get(i).id);
-									}
+									System.out.printf("\tTask %d request cannot be granted\n", tasks.get(i).id);
 									blocked.add(tasks.remove(i));
+
 									i--; //have to decrement i once so that it doesnt skip the next task since we removied it
+
 								}
 							}
 						} else if (tasks.get(i).activities.get(it).type.equals("release")){ // release at the end
-							if (verbose){
-								System.out.printf("\tTask %d releases %d unit(s)", tasks.get(i).id, resAmount);
-							}
+							System.out.printf("\tTask %d releases %d unit(s)", tasks.get(i).id, resAmount);
 							released[resType-1] += resAmount;
 							//	System.out.println("pending to be released "+released[resType-1]);
 							claimChart[id-1][resType-1] +=resAmount; //re update claim table
@@ -609,13 +685,9 @@ public class Assignment3 {
 							if (tasks.get(i).activities.get(it).type.equals("terminate")){
 								if (delay >0){
 									tasks.get(i).activities.get(it).delay--;
-									if (verbose){
-										System.out.printf("\tTask %d is delayed %d\n", tasks.get(i).id, delay);
-									}
+									System.out.printf("\tTask %d is delayed %d\n", tasks.get(i).id, delay);
 								} else{
-									if (verbose){
-										System.out.printf(" and terminates at %d\n", time+1);
-									}
+									System.out.printf(" and terminates at %d\n", time+1);
 									tasks.get(i).finishTime = time+1;
 									done.add(tasks.remove(i)); //remove from tasks and add to done list
 									i--; //have to decrement i once so that it doesnt skip the next task since we removied it
@@ -624,10 +696,9 @@ public class Assignment3 {
 							}else{
 								System.out.println("");
 							}
+
 						} else if (tasks.get(i).activities.get(it).type.equals("terminate")){
-							if (verbose){
-								System.out.printf(" and terminates at %d\n", time+1);
-							}
+							System.out.printf(" and terminates at %d\n", time+1);
 							tasks.get(i).finishTime = time+1;
 							done.add(tasks.remove(i)); //remove from tasks and add to done list
 							i--; //have to decrement i once so that it doesnt skip the next task since we removied it
@@ -636,12 +707,13 @@ public class Assignment3 {
 					}
 				}
 			}
-		
+			//	System.out.println("before);
 			//add the released back into available
 			for (int i =0; i<released.length; i++){
 				resAvail[i]+=released[i];
 				released[i]=0; //reset back to 0
 				//THIS IS THE KEY ERROR IN MY FIFO TOO
+
 			}
 
 			//add back from aux to tasks
@@ -651,9 +723,7 @@ public class Assignment3 {
 			if (tasks.isEmpty() && blocked.isEmpty()){
 				break;
 			}
-			if (time > 10){
-				break;
-			}
+			
 
 			time++;
 		} //after while loop
@@ -668,6 +738,10 @@ public class Assignment3 {
 		int totalWait = 0;
 		//int avgPer = 0;
 		System.out.println("\t Banker");
+	//	System.out.println("done"+done.size());
+	//	System.out.println("aborted"+aborted.size());
+		
+		
 		for (int i = 0; i < numTask; i++){
 			if (done.get(doneCtr).id == i+1){
 				//		System.out.printf("\tTask %d releases %d unit(s)", tasks.get(i).id, resAmount);

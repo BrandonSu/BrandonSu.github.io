@@ -73,3 +73,30 @@ button {
 .col-sm-4{
   width: 100%;
 }
+#contact{
+  position:fixed;
+  bottom:0px;
+  font-size:130%;
+  width:100%;
+  margin-left:auto;
+  margin-right:auto;
+  background-color: black;
+  color:black;
+/*  border:1px solid white;*/
+}
+#contact form{
+  margin:auto;
+  text-align:center;
+}
+#ass {
+  margin-bottom:40px;
+}
+input[type="submit"]{
+  color:black;
+}
+input[type="text"]{
+  color:black;
+}
+input[type="email"]{
+  color:black;
+}

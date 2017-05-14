@@ -1,0 +1,443 @@
+
+<script src=M.js></script>
+<script src=lib2k.js></script>
+<script src=SHAPE.js></script>
+<script src=drawlib2.js></script>
+
+<style>
+   body{
+      background-image: url('imgs/pastel.jpg');
+   }
+   div{
+      background-color: black;
+   }
+</style>
+
+<body text=white>
+<center>
+<canvas id='canvas1' width=600 height=600></canvas>
+   <div style='border: 1px solid white;'>
+   <h2> Instructions </h2>
+   <p align=left> Press Left Arrow to make character thinner. <br>
+                  Press Right Arrow to make character wider.  <br>
+                  Press Up Arrow to make character taller. <br>
+                  Press Down Array to make character smaller. <br>
+                  Press 1, 2 or 3 to switch between clothes. <br>
+                  Press b to toggle between 4 backgrounds.<br>
+                  Press z, x, or c to switch between hats. <br>
+                  </p>
+                  <embed src="nyan.mp3" autostart="true" loop="true">
+   <p align=left>
+				  Note: Works best in Chrome <br>
+                  Made by Brandon, Dora, Ashley
+                  </p>
+   </div>
+</center>
+</body>
+
+   
+<script>
+
+var vs = '\
+attribute vec3 aPos, aNor;\n\
+attribute vec2 aUV;\n\
+varying   vec3 vPos, vNor;\n\
+varying   vec2 vUV;\n\
+uniform   mat4 matrix, invMatrix;\n\
+void main() {\n\
+   vec4 pos = matrix * vec4(aPos, 1.);\n\
+   vec4 nor = vec4(aNor, 0.) * invMatrix;\n\
+   gl_Position = pos;\n\
+   vPos = pos.xyz;\n\
+   vNor = nor.xyz;\n\
+   vUV  = aUV;\n\
+}\n\
+';
+
+var fs1 = '\
+varying vec3 vPos, vNor;\n\
+varying vec2 vUV;\n\
+void main() {\n\
+   vec3 normal = normalize(vNor);\n\
+   vec3 c = vec3(.1,.1,.1);\n\
+   c += vec3(.7,.7,1.) * max(0.,dot(normal, vec3( .7, .7, .7)));\n\
+   c += vec3(.5,.3,.1) * max(0.,dot(normal, vec3(-.7,-.7,-.7)));\n\
+   gl_FragColor = vec4(sqrt(c), 1.);\n\
+}\n\
+';
+
+var fs2 = '\
+varying vec3 vPos, vNor;\n\
+varying vec2 vUV;\n\
+uniform sampler2D uSampler;\n\
+void main() {\n\
+   vec3 normal = normalize(vNor);\n\
+   vec3 c = vec3(.1,.1,.1);\n\
+   c += vec3(.7,.7,1.) * max(0.,dot(normal, vec3( .7, .7, .7)));\n\
+   c += vec3(.5,.3,.1) * max(0.,dot(normal, vec3(-.7,-.7,-.7)));\n\
+   vec4 texture = texture2D(uSampler, vUV);\n\
+   c *= texture.rgb;\n\
+   gl_FragColor = vec4(sqrt(c), 1.);\n\
+}\n\
+';
+
+   //Default Values
+   var widthBody = .2;
+   var heightBody = .1;
+
+   var widthHead = 0.12;
+   var heightHead = 0.05;
+
+   var heightCtr=0;
+   var widthCtr=1.5;
+
+   var backgroundimages = [
+      'imgs/pastel.jpg',
+      'imgs/rainbow.jpg',
+      'imgs/glitter.gif',
+      'imgs/ooh.jpg'
+   ];
+
+   var backgroundIndex = 0;
+
+   var hatsMain = [
+     hatMat2Top, hatMat1, null
+   ];
+   var hatsBrim =[
+   	 hatMat2Bottom, null, null
+   ];
+
+   var hatsIndex = 0;
+
+   //Changing the body structure
+   function stretchBody(e){
+      if(e.keyCode == 38 && heightBody <= .5){   //Up Arrow : Taller
+         heightBody += .1;
+         heightHead+=.0005;
+         heightCtr+=1;
+         armHeight += .045;
+         console.log(heightBody);
+         console.log(armHeight);
+         //height body increases by 2.857 per arm height increase
+      }
+      if(e.keyCode == 40 && heightBody >= .2){   //Down Arrow : Shorter
+         heightBody -= .1;
+         heightHead -=.0005;
+         heightCtr-=1;
+         armHeight -= .045;
+         console.log(heightBody);
+         console.log(armHeight);
+      }
+      if(e.keyCode == 37 && widthBody >= .2){    //Left Arrow : Skinny Down
+         widthBody -= .1;
+         widthHead -= .01;
+         widthCtr-=1;
+         armWidth -= .01;
+         legWidth -= 0.02;
+         console.log(widthBody);
+      }
+      if(e.keyCode == 39 && widthBody <= .5){    //Right Arrow : Grow fatter lol it me
+         widthBody += .1;
+         widthHead += .01;
+         widthCtr+=1;
+         armWidth += .01;
+         legWidth += 0.02;
+         console.log(widthBody);
+      }
+      if(e.keyCode == 49){
+         bodyMaterial = checkered;
+      }
+      if(e.keyCode == 50){
+         bodyMaterial = wool;
+      }
+      if(e.keyCode == 51){
+         bodyMaterial = plaid;
+      }
+      if(e.keyCode == 90){
+      	/*
+      	hatsIndex++;
+      	if (hatsIndex==hatsMain.length){
+      		hatsIndex=0;
+      	}
+
+         hatMainMaterial = hatsMain[hatsIndex];
+         hatBrimMaterial = hatsBrim[hatsIndex];*/
+         hatMainMaterial = hatMat2Top;
+         hatBrimMaterial = hatMat2Bottom;
+      }
+      if(e.keyCode == 88){
+         hatMainMaterial = hatMat1;
+         hatBrimMaterial = null;
+      }
+      if(e.keyCode == 67){
+         hatMainMaterial = null;
+         hatBrimMaterial = null;
+      }
+      if(e.keyCode == 66){
+         backgroundIndex++;
+         if(backgroundIndex == backgroundimages.length){
+            backgroundIndex = 0;
+         }
+         document.body.style.backgroundImage = 'url('+backgroundimages[backgroundIndex]+')';
+      }
+
+
+
+      body.setMaterial(bodyMaterial);
+      leftUpperArm.setMaterial(bodyMaterial);
+      rightUpperArm.setMaterial(bodyMaterial);
+      leftLowerArm.setMaterial(bodyMaterial);
+      rightLowerArm.setMaterial(bodyMaterial);
+      hatMain.setMaterial(hatMainMaterial);
+      hatBrim.setMaterial(hatBrimMaterial);
+   }
+
+   //materials and scene   
+   var material1 = new Material(vs, fs1);
+   material1.setTexture('imgs/polkadots.jpg');
+   var material2 = new Material(vs, fs2);
+   material2.setTexture('imgs/brick.png');
+
+   var jeans = new Material(vs, fs2);
+   jeans.setTexture('imgs/jeans.jpg');
+
+   //Shirts
+   var checkered = new Material(vs, fs2);
+   checkered.setTexture('imgs/checkered.jpg');
+   var wool = new Material(vs, fs2);
+   wool.setTexture('imgs/knitted.jpg');
+   var plaid = new Material(vs, fs2);
+   plaid.setTexture('imgs/plaid.jpg');
+
+   var skin = new Material(vs, fs2);
+   skin.setTexture('imgs/head.jpg');
+
+   var hatMat1 = new Material(vs, fs2);
+   hatMat1.setTexture('imgs/fur.png');
+
+   var hatMat2Top = new Material(vs, fs2);
+   hatMat2Top.setTexture('imgs/tophat2.jpg');
+
+   var hatMat2Bottom = new Material(vs, fs2);
+   hatMat2Bottom.setTexture('imgs/tophat.jpg');
+
+   var scene = new Scene();
+
+   //initialize body parts
+   var head;
+   var head2;
+   var head3;
+   var headMaterial;
+
+   var hatFur;
+   var hatFurBrim;
+   var hatMain;
+   var hatBrim;
+
+   var hatBrimMaterial;
+   var hatMainMaterial;
+   hatMainMaterial = hatMat2Top;
+   hatBrimMaterial = hatMat2Bottom;
+   
+   //basically have toggle set the materials, if none set it wont show up
+/*
+   //make russian fur hat 
+   hatFur = new SceneObject();
+   hatFur.setVertices(SHAPE.cylinder(15));
+   hatFur.setMaterial(hatMat1);
+//   scene.addObject(hatFur);
+
+*/
+
+// make a tophat?
+   hatMain = new SceneObject();
+   hatMain.setVertices(SHAPE.cylinder(8));
+   hatMain.setMaterial(hatMainMaterial);
+   scene.addObject(hatMain);
+
+   hatBrim = new SceneObject();
+   hatBrim.setVertices(SHAPE.cylinder(15));
+   hatBrim.setMaterial(hatBrimMaterial);
+   scene.addObject(hatBrim);
+
+
+   //cube head
+   head = new SceneObject();
+   head.setVertices(SHAPE.cylinder(4));
+   head.setMaterial(skin);
+   scene.addObject(head);
+
+/* 
+   //sphere head
+   head2 = new SceneObject();
+   head2.setVertices(SHAPE.sphere(5));
+   head2.setMaterial(plaid);
+   scene.addObject(head2);
+*/
+
+   //torso   
+   var body, legs;
+   var bodyMaterial;
+   body = new SceneObject();
+   bodyMaterial=checkered;
+   legs = jeans;
+
+   body.setVertices(SHAPE.cylinder(4)); //Gives a rectangular body
+   body.setMaterial(bodyMaterial);
+   scene.addObject(body);
+
+   //limbs
+   var leftUpperArm = new SceneObject();
+   var leftLeg = new SceneObject();
+   var rightUpperArm = new SceneObject();
+   var rightLeg = new SceneObject();
+
+   var leftLowerArm = new SceneObject();
+   var rightLowerArm = new SceneObject();
+
+   var armWidth = widthBody/10;
+   var armHeight = heightBody/2.2;
+   var legWidth = 0.05;
+   var lArmMaterial = bodyMaterial;    //arms should have same material as body
+   var rArmMaterial = bodyMaterial;
+   var lLegMaterial = legs;
+   var rLegMaterial = legs;
+
+   leftUpperArm.setVertices(SHAPE.cylinder(15));
+   rightUpperArm.setVertices(SHAPE.cylinder(15));
+   leftLowerArm.setVertices(SHAPE.cylinder(15));
+   rightLowerArm.setVertices(SHAPE.cylinder(15));
+   leftLeg.setVertices(SHAPE.cylinder(15));
+   rightLeg.setVertices(SHAPE.cylinder(15));
+   leftUpperArm.setMaterial(lArmMaterial);
+   rightUpperArm.setMaterial(rArmMaterial);
+
+   leftLowerArm.setMaterial(lArmMaterial);
+   rightLowerArm.setMaterial(rArmMaterial);
+   leftLeg.setMaterial(lLegMaterial);
+   rightLeg.setMaterial(rLegMaterial);
+   
+   scene.addObject(leftUpperArm);
+   scene.addObject(rightUpperArm);
+   scene.addObject(leftLowerArm);
+   scene.addObject(rightLowerArm);
+   scene.addObject(leftLeg);
+   scene.addObject(rightLeg);
+
+   //scene
+   canvas1.scene = scene;
+
+   var m = M.identityMatrix();
+
+   gl_start(canvas1,function(time) {
+      document.addEventListener('keydown', stretchBody);
+      M.identity(m);
+      M.rotateY(m, Math.PI);
+      M.rotateY(m, time);
+
+/*
+         M.scale(m, widthHead, heightHead, widthHead*1.2);     
+*/
+
+    //top hat
+      M.save(m);
+         M.scale(m, widthHead, heightHead, widthHead);
+         M.rotateX(m, .5*Math.PI);
+         M.rotateZ(m, .75*Math.PI);
+         M.translate(m, [0,0,-4.7-heightHead]);
+         M.translate(m, [0,0,-1.9*heightCtr]);
+         M.translate(m, [.3*Math.sin(8*time),.3*Math.sin(8*time),0]);
+         //diagonal?, also diagonal
+         hatMain.setMatrix(m);
+      
+      M.restore(m);
+    //top hat brim
+       M.save(m);
+         M.scale(m, widthHead*1.5, .01, widthHead);
+         M.rotateX(m, .5*Math.PI);
+         M.rotateZ(m, .75*Math.PI);
+         M.translate(m, [0,0,-18.7-heightHead]);
+         M.translate(m, [0,0,-9.85*heightCtr]);
+         M.translate(m, [.3*Math.sin(8*time),.3*Math.sin(8*time),0]);
+         //diagonal?, also diagonal
+         hatBrim.setMatrix(m);
+      
+      M.restore(m);
+
+
+
+   //head
+      M.save(m);
+         M.scale(m, widthHead, heightHead, widthHead);
+         M.rotateX(m, .5*Math.PI);
+         M.rotateZ(m, .75*Math.PI);
+         M.translate(m, [0,0,-2.7]);
+         M.translate(m, [0,0,-1.9*heightCtr]);
+         M.translate(m, [.3*Math.sin(8*time),.3*Math.sin(8*time),0]);
+         //diagonal?, also diagonal
+         head.setMatrix(m);
+      M.restore(m);
+
+      //torso
+      M.save(m);
+         M.scale(m, widthBody, heightBody, widthBody);
+         M.rotateX(m, .5*Math.PI);
+         M.rotateZ(m, .75*Math.PI);
+         body.setMatrix(m);
+      M.restore(m);
+
+      //upper limbs
+      M.save(m);
+         M.scale(m, armWidth, armHeight, armWidth);
+         M.translate(m, [-8+widthBody+armWidth, armHeight+.6, 0]);
+         //depth in body, up/down, forwards/backwards
+         M.rotateX(m, Math.PI/2);
+         leftUpperArm.setMatrix(m);
+      M.restore(m);
+
+      M.save(m);
+         M.scale(m, armWidth, armHeight, armWidth);
+         M.translate(m, [8-widthBody-armWidth, armHeight+.6, 0]);
+        // M.translate(m, [8-widthBody-armWidth, heightBody+armHeight+.6, 0]);
+         M.rotateX(m, Math.PI/2);
+         rightUpperArm.setMatrix(m);
+      M.restore(m);
+
+      //lower limbs2
+      M.save(m);
+         M.scale(m, armWidth, armWidth, armHeight/1.5);
+         M.translate(m, [-8, -3.5*armHeight-armWidth*heightCtr/6, .7+armHeight]);
+         // away/towards body, up/down arm, towards front/back
+         //armHeight+heightCtr/1.5+.1
+         //height body increases by 2.857 per arm height increase
+         
+         leftLowerArm.setMatrix(m);
+      M.restore(m);
+
+      M.save(m);
+         M.scale(m, armWidth, armWidth, armHeight/1.2);
+ 		 M.translate(m, [8, -3.5*armHeight-armWidth*heightCtr/6, .7+armHeight]);
+         //M.translate(m, [8-widthBody-armWidth, heightBody+armHeight+.1, 0]);
+        // M.rotateX(m, Math.PI/2);
+         rightLowerArm.setMatrix(m);
+      M.restore(m);
+
+      //legs
+      M.save(m);
+         M.scale(m, legWidth, armHeight, legWidth);
+         M.translate(m, [-1.5+widthBody-legWidth, -2.2, widthCtr/2.5*Math.sin(6*time)]);
+         // asdfasd, up/down, forward/back
+         M.rotateX(m, Math.PI/2);
+         leftLeg.setMatrix(m);
+      M.restore(m);
+
+      M.save(m);
+         M.scale(m, legWidth, armHeight, legWidth);
+         M.translate(m, [1.5-widthBody+legWidth, -2.2, widthCtr/2.5*Math.sin(-6*time)]);
+         M.rotateX(m, Math.PI/2);
+         rightLeg.setMatrix(m);
+      M.restore(m);
+   }
+);
+
+</script>
