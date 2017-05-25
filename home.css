@@ -43,7 +43,7 @@ a:hover {
 }
 body{
   color:white;
-  background: url("space.jpg") no-repeat center center fixed;
+  background: url("images/space.jpg") no-repeat center center fixed;
   background-size: cover;
   font-family: "VT323";
   padding-left:4px;
