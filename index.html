@@ -71,8 +71,11 @@
 
         </div>
 
-        <div class = "col-md-4 col-sm-4 col-xs-12 nopadding">
-            <a href="Assteroids/assteroid.html"><button id ="ass" type="button" class="btn btn-primary">Assteroids Game Feb 2017</button>   </a>  
+        <div id = "Projects" class = "col-md-4 col-sm-4 col-xs-12 nopadding">
+        	<button id ="projects" type="button" class="btn btn-primary"> Projects</button> 
+        	<div id = "projectsmenu" class = "menu_dropdown" >
+          		<a href="Assteroids/assteroid.html"><button id ="ass" type="button" class="btn btn-primary">Assteroids Game Feb 2017</button>   </a>  
+          	 </div>
         </div>
 
         <div id = "footer">
@@ -90,6 +93,7 @@
 
             var gHoverMode = false;
             var wHoverMode = false;
+            var pHoverMode = false;
 
             setInterval(function() { console.log(gHoverMode); }, 500);
 
@@ -117,6 +121,19 @@
                 },
                 function(){
                   $("#webmenu").slideUp(500, function(){ wHoverMode = false;});
+                  console.log("up");
+                }
+              );
+              $("#Projects").hover(
+                function(){
+                  if (pHoverMode == false) {
+                    $("#projectsmenu").slideDown();
+                    pHoverMode = true;
+                    console.log("down");
+                  }
+                },
+                function(){
+                  $("#projectsmenu").slideUp(500, function(){ pHoverMode = false;});
                   console.log("up");
                 }
               );
@@ -157,12 +174,31 @@
               $("#webmenu").click(function(event){
                 event.stopPropagation();
               });
+              $("#Projects").click(
+                function(event){
+                  event.stopPropagation();
+                  if (pHoverMode == false){
+                    $("#projectsmenu").slideDown(500);
+                    pHoverMode = true;
+                    console.log("down");
+                  } else{
+                    $("#projectsmenu").slideUp(500);
+                    pHoverMode = false;
+                    console.log("up");
+                  }         
+                }                
+              );
+              $("#projectsmenu").click(function(event){
+                event.stopPropagation();
+              });
               $(document).click(
                 function(event){
                   $("#graphicsmenu").slideUp(500);
                   $("webmenu").slideUp(500);
+                  $("projectsmenu").slideUp(500);
                   gHoverMode = false;
                   wHoverMode = false;
+                  pHoverMode = false;
                 }
               );
             }
@@ -174,9 +210,11 @@
                 
                 $("#Graphics").off('click');
                 $("#Web").off('click');
+                $("#Projects").off('click');
 
                 $("#Graphics").off();
                 $("#Web").off();
+                $("#Projects").off();
 
                 $(document).off('click');
                 $(document).off();
@@ -208,15 +246,32 @@
                     console.log("up");
                   }
                 );
+
+                $("#Projects").hover(
+                  function(){
+                    if (pHoverMode == false) {
+                      $("#projectsmenu").slideDown();
+                      console.log("down");
+                      pHoverMode = true;
+                    }
+                  },
+                  function(){
+                    $("#projectsmenu").slideUp(500, function() {pHoverMode = false; });
+                    console.log("up");
+                  }
+                );
               }
               else{ //smaller dynamic
                 $("button#web").html("Web Design Spring 2017");
                 $("button#graphics").html("Computer Graphics Spring 2017");
+
            
                 $("#Graphics").off();
                 $("#Web").off();
+                $("#Projects").off();
                 gHoverMode = false;
                 wHoverMode = false;
+                pHoverMode = false;
 
                 $("#Graphics").click(
                   function(){
@@ -243,6 +298,19 @@
                       console.log("up");
                     }
                   }                       
+                );
+                $("#Projects").click(
+                  function(){
+                    if (pHoverMode == false){
+                      $("#projectsmenu").slideDown(500);
+                      console.log("down");
+                      pHoverMode = true;
+                    } else{
+                      $("#projectsmenu").slideUp(500);
+                      pHoverMode = false;
+                      console.log("up");
+                    }
+                  }
                 );
               }
             });
