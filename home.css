@@ -59,7 +59,13 @@ body{
   margin-bottom:2px;
 }
 #webmenu button{
-  font-size:100%;
+  font-size:115%;
+  width:100%;
+  text-align:left;
+   margin-bottom:2px;
+}
+#projectsmenu button{
+  font-size:115%;
   width:100%;
   text-align:left;
    margin-bottom:2px;
@@ -81,8 +87,6 @@ button {
 #contact form{
   margin:auto;
   text-align:center;
-  
-  
 }
 #ass {
   margin-bottom:40px;
