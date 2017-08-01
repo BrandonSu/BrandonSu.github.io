@@ -46,6 +46,7 @@ function assteroid() {
     butt.setAttribute('src', 'assteroid_v2.png');
     butt.setAttribute('class', 'overlays');
     butt.setAttribute('id', index);
+    butt.setAttribute('health', 5);
     $(butt).css('transform', 'rotate(' + 180 + 'deg)');
     index++;
     document.body.appendChild(butt);
@@ -72,6 +73,10 @@ function assteroid() {
     }
     var that = this;
     butt.onclick = function() {
+        this.health -= 1;
+        if (this.health <=0){
+            document.body.removeChild(document.body.childNodes[this.id]);
+        }
         angle = getRotationDegrees($(this)) + 180;
         $(this).css('transform', 'rotate(' + angle + 'deg)');
         that.speedx = -that.speedx;
