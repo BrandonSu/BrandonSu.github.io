@@ -21,8 +21,8 @@ function startGame() {
 var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() { // initialize the game
-        this.canvas.width = 1200;
-        this.canvas.height = 800;
+        this.canvas.width = window.innerWidth-30;
+        this.canvas.height = window.innerHeight-30;
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
@@ -98,6 +98,7 @@ function updateGameArea() {
             if (assteroids[i].crashed()) {
                 alert("You lost!");
                 myGameArea.end();
+                i = assteroids.length;
             } 
         }
         myGameArea.clear(); // refresh screen before updating assteroid drawings
