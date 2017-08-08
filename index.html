@@ -78,7 +78,7 @@
           		<a href="Projects/GraphicsFinalProj/index.html"><button type="button" class="btn btn-primary">Interactive Graphics Final Project May 2017</button></a>  
           	</div>
         </div>
-        <canvas id=canvas1 width=window.innerWidth height=400>
+        <canvas id=canvas1 >
         </canvas>
 
         <div id = "footer">
@@ -91,10 +91,17 @@
 
         <script src=ComputerGraphics/Assignment5/drawlib1.js></script>
         <script>
+            function draw() {
+                var ctx = document.getElementById('canvas1');
+                ctx.canvas.width  = window.innerWidth;
+                ctx.canvas.height = window.innerHeight;
+                //...drawing code...
+            }
+              
            canvas1.update = function(g) {
               /*  var backgroundImage = new Image();
                 backgroungImage.src = 'pattern.png';*/
-
+                draw();
                 g.lineWidth = 15;
                 g.lineCap = 'round'
                 g.lineJoin = 'round';
@@ -108,8 +115,10 @@
                 g.lineTo(0, 0);
                 g.strokeStyle = "#6494ef"; //color of background
                 g.stroke();
-              }
+
+
               draw2DCanvases([ canvas1]);
+            }
         </script>
 
         <script src="scripts/jquery-1.12.3.min.js" type="text/javascript"></script>
