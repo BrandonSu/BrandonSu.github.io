@@ -119,6 +119,9 @@
         g.fillStyle = "#FF0000";
        // g.fillRect(0,0,window.innerWidth,75);
         
+//DO THE THING WHERE IT LIKE HAPPENS IN THE BACKGROUND AND THEN THE CANVAS JUST LIKE SHOWS WHATEVER LIKE WINDOW IT COVERS LIKE WITH THAT TREE POPPING UP THING WE DID TOWARDS END OF CLASS
+
+
         /*
             function draw() {
                 var ctx = document.getElementById('canvas1');
@@ -141,13 +144,212 @@
                 g.beginPath();
                 g.moveTo(0, 0);
 
-                g.lineTo(this.width, 0);//this refers to canvase size
-                g.lineTo(this.width, this.height);
-                g.lineTo(0, this.height);
+                g.lineTo(window.innerWidth, 0);//this refers to canvase size
+                g.lineTo(window.innerWidth, window.innerHeight);
+                g.lineTo(0, window.innerHeight);
                 g.lineTo(0, 0);
                 g.strokeStyle = "#6494ef"; //color of background
                 g.stroke();
                 g.beginPath();
+
+      var x = this.cursor.x;
+      var y = this.cursor.y;
+      var z = this.cursor.z;
+      if (z == 0) {
+         x = this.width / 2 -125 +250* Math.max(Math.max(Math.cos(time),0),Math.max(-Math.cos(.5*time),0));
+         y = this.height / 2 -85 -160*Math.min(Math.min(Math.cos(time),0), Math.min(Math.cos(.5*time),0));
+      }//tried to make it move around the canvas continously but this was as close as i could get it
+
+
+      var angle = time; //BRANCH 1
+      var flapY = 100 * Math.sin(angle);
+      var flapX = 100 * Math.cos(angle);
+
+      var angle12 = time; //midpoint of branch 1
+      var flapY12 = 50 * Math.sin(angle);
+      var flapX12 = 50 * Math.cos(angle);
+
+      var angle6 = time -.5; //sub branch for branch 1 and 3
+      var flapY6 = 90 * Math.sin(angle6);
+      var flapX6 = 90 * Math.cos(angle6);
+
+
+      var angle2 = time +1.; //BRANCH 2
+      var flapY2 = 100 * Math.sin(angle2);
+      var flapX2 = 100 * Math.cos(angle2);
+
+      var angle22 = time +1.; //midpoint of branch 2
+      var flapY22 = 50 * Math.sin(angle2);
+      var flapX22 = 50 * Math.cos(angle2);
+
+      var angle4 = time +.5; //Sub branch for branch 2 and branch 1
+      var flapY4 = 90 * Math.sin(angle4);
+      var flapX4 = 90 * Math.cos(angle4);
+
+
+      var angle3 = time +2.1; //BRANCH 3
+      var flapY3 = 100 * Math.sin(angle3);
+      var flapX3 = 100 * Math.cos(angle3);
+
+      var angle32 = time +2.1; //midpoint of branch 1
+      var flapY32 = 50 * Math.sin(angle3);
+      var flapX32 = 50 * Math.cos(angle3);
+
+      var angle5 = time +1.5; //Sub branch for branch 2 AND BRANCH 3
+      var flapY5 = 90 * Math.sin(angle5);
+      var flapX5 = 90 * Math.cos(angle5);
+
+//DRAWING BRANCH 1
+      g.moveTo(x-flapX, y+flapY);
+      g.lineTo(x, y);
+      g.lineTo(x+flapX, y-flapY);
+      g.moveTo(x,y);
+
+      g.moveTo((x+flapX12), (y-flapY12));
+      g.lineTo((x+flapX4), (y-flapY4)); //one branch
+      g.moveTo((x-flapX12), (y+flapY12));
+      g.lineTo((x-flapX4), (y+flapY4)); //other branch
+      g.moveTo(x,y);
+
+      g.moveTo((x+flapX12), (y-flapY12));
+      g.lineTo((x+flapX6), (y-flapY6)); //one branch
+      g.moveTo((x-flapX12), (y+flapY12));
+      g.lineTo((x-flapX6), (y+flapY6)); //other branch
+      g.moveTo(x,y);
+
+
+//drawing branch 2
+      g.lineTo((x+flapX2), (y-flapY2));
+      g.lineTo((x-flapX2), (y+flapY2));
+      g.lineTo(x,y);
+
+      g.moveTo((x+flapX22), (y-flapY22));
+      g.lineTo((x+flapX4), (y-flapY4)); //one branch
+      g.moveTo((x-flapX22), (y+flapY22));
+      g.lineTo((x-flapX4), (y+flapY4)); //other branch
+      g.moveTo(x,y);
+    
+      g.moveTo((x+flapX22), (y-flapY22));
+      g.lineTo((x+flapX5), (y-flapY5)); //one branch
+      g.moveTo((x-flapX22), (y+flapY22));
+      g.lineTo((x-flapX5), (y+flapY5)); //other branch
+      g.moveTo(x,y);
+      
+//BRANCH 3
+      g.lineTo((x+flapX3), (y-flapY3));
+      g.lineTo((x-flapX3), (y+flapY3));
+      g.lineTo(x,y); 
+
+      g.moveTo((x+flapX32), (y-flapY32));
+      g.lineTo((x-flapX6), (y+flapY6)); //one branch
+      g.moveTo((x-flapX32), (y+flapY32));
+      g.lineTo((x+flapX6), (y-flapY6)); //other branch
+      g.moveTo(x,y);
+
+      g.moveTo((x+flapX32), (y-flapY32));
+      g.lineTo((x+flapX5), (y-flapY5)); //one branch
+      g.moveTo((x-flapX32), (y+flapY32));
+      g.lineTo((x-flapX5), (y+flapY5)); //other branch
+      g.moveTo(x,y);
+
+
+//SECOND SNOWFLAKE
+      x = this.width / 2 +125 -250* Math.max(Math.max(Math.cos(time),0),Math.max(-Math.cos(.5*time),0));
+      y = this.height / 2 +85 +160*Math.min(Math.min(Math.cos(time),0), Math.min(Math.cos(.5*time),0));
+    
+      var angle = time; //BRANCH 1
+      var flapY = 100 * Math.sin(angle);
+      var flapX = 100 * Math.cos(angle);
+
+      var angle12 = time; //midpoint of branch 1
+      var flapY12 = 50 * Math.sin(angle);
+      var flapX12 = 50 * Math.cos(angle);
+
+      var angle6 = time -.5; //sub branch for branch 1 and 3
+      var flapY6 = 90 * Math.sin(angle6);
+      var flapX6 = 90 * Math.cos(angle6);
+
+
+      var angle2 = time +1.; //BRANCH 2
+      var flapY2 = 100 * Math.sin(angle2);
+      var flapX2 = 100 * Math.cos(angle2);
+
+      var angle22 = time +1.; //midpoint of branch 2
+      var flapY22 = 50 * Math.sin(angle2);
+      var flapX22 = 50 * Math.cos(angle2);
+
+      var angle4 = time +.5; //Sub branch for branch 2 and branch 1
+      var flapY4 = 90 * Math.sin(angle4);
+      var flapX4 = 90 * Math.cos(angle4);
+
+
+      var angle3 = time +2.1; //BRANCH 3
+      var flapY3 = 100 * Math.sin(angle3);
+      var flapX3 = 100 * Math.cos(angle3);
+
+      var angle32 = time +2.1; //midpoint of branch 1
+      var flapY32 = 50 * Math.sin(angle3);
+      var flapX32 = 50 * Math.cos(angle3);
+
+      var angle5 = time +1.5; //Sub branch for branch 2 AND BRANCH 3
+      var flapY5 = 90 * Math.sin(angle5);
+      var flapX5 = 90 * Math.cos(angle5);
+
+//DRAWING BRANCH 1
+      g.moveTo(x-flapX, y+flapY);
+      g.lineTo(x, y);
+      g.lineTo(x+flapX, y-flapY);
+      g.moveTo(x,y);
+
+      g.moveTo((x+flapX12), (y-flapY12));
+      g.lineTo((x+flapX4), (y-flapY4)); //one branch
+      g.moveTo((x-flapX12), (y+flapY12));
+      g.lineTo((x-flapX4), (y+flapY4)); //other branch
+      g.moveTo(x,y);
+
+      g.moveTo((x+flapX12), (y-flapY12));
+      g.lineTo((x+flapX6), (y-flapY6)); //one branch
+      g.moveTo((x-flapX12), (y+flapY12));
+      g.lineTo((x-flapX6), (y+flapY6)); //other branch
+      g.moveTo(x,y);
+
+
+//drawing branch 2
+      g.lineTo((x+flapX2), (y-flapY2));
+      g.lineTo((x-flapX2), (y+flapY2));
+      g.lineTo(x,y);
+
+      g.moveTo((x+flapX22), (y-flapY22));
+      g.lineTo((x+flapX4), (y-flapY4)); //one branch
+      g.moveTo((x-flapX22), (y+flapY22));
+      g.lineTo((x-flapX4), (y+flapY4)); //other branch
+      g.moveTo(x,y);
+    
+      g.moveTo((x+flapX22), (y-flapY22));
+      g.lineTo((x+flapX5), (y-flapY5)); //one branch
+      g.moveTo((x-flapX22), (y+flapY22));
+      g.lineTo((x-flapX5), (y+flapY5)); //other branch
+      g.moveTo(x,y);
+      
+//BRANCH 3
+      g.lineTo((x+flapX3), (y-flapY3));
+      g.lineTo((x-flapX3), (y+flapY3));
+      g.lineTo(x,y); 
+
+      g.moveTo((x+flapX32), (y-flapY32));
+      g.lineTo((x-flapX6), (y+flapY6)); //one branch
+      g.moveTo((x-flapX32), (y+flapY32));
+      g.lineTo((x+flapX6), (y-flapY6)); //other branch
+      g.moveTo(x,y);
+
+      g.moveTo((x+flapX32), (y-flapY32));
+      g.lineTo((x+flapX5), (y-flapY5)); //one branch
+      g.moveTo((x-flapX32), (y+flapY32));
+      g.lineTo((x-flapX5), (y+flapY5)); //other branch
+      g.moveTo(x,y);
+  
+      g.strokeStyle = "#64d9ef";//color of snowflake
+      g.stroke(); 
 
 
              // draw2DCanvases([ canvas1]);
