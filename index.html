@@ -117,15 +117,15 @@
         <script src=drawlib1.js></script>
         <script>
         var canvas;
+        var canWidth = 1200;
+        var canHeight = 650;
           var createCanvas = function(){
             if(canvas !== undefined){
               document.body.removeChild(canvas);
             
             }
-             canWidth = 1200;
-             canHeight = 650;
+             
             scale = Math.max(innerWidth /canWidth, innerHeight / canHeight);
-          
 
             var leftOffset = 0;
             var topOffset = 0;
@@ -143,8 +143,8 @@
             canvas.style.left = "0px";
             canvas.style.width = innerWidth + "px"; 
             canvas.style.height = innerHeight + "px";
-            canvas.width = canWidth - (leftOffset * 2);
-            canvas.height = canHeight - (topOffset * 2);
+            canvas.width = canWidth ;
+            canvas.height = canHeight ;
 
             document.body.appendChild(canvas);
             /*
@@ -157,7 +157,7 @@
             ctx.fillStyle = "#FF0000";*/
           }
           window.addEventListener('resize',createCanvas);
-createCanvas();
+          createCanvas();
 
 
         canvasS = document.getElementById('canvas1');
