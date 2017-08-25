@@ -31,23 +31,7 @@
         left:10px;
       }
 
-      #Canv {
-        width:99%;
-        height:78%;
-      border: 1px solid white;
-        position:absolute;
-        top:150px;
-      }
-      #canvas1{
-       
-          
-        /*width:100%;
-         height:100%;*/
-      }
-      .clear {
-        clear:both;
-
-      }
+      
 
     </style>
     </head>
@@ -121,26 +105,16 @@
         var canHeight = 650;
           var createCanvas = function(){
             scale = Math.max(innerWidth /canWidth, innerHeight / canHeight);
-
-       /*     var leftOffset = 0;
-            var topOffset = 0;*/
             canW = scale * canWidth - 50;
             canH = scale * canHeight - 200;
-            /*
-            if(canW > innerWidth ){
-                leftOffset = ((canW - innerWidth) / canW) * canWidth / 2;
-            }else
-            if(canH > innerHeight ){
-                topOffset = ((canH - innerHeight) / canH) * canHeight / 2;
-            }*/
             canvas = document.createElement("canvas");
-            canvas.style.position = "absolute";
+            /*canvas.style.position = "absolute";
             canvas.style.top = "0px";
             canvas.style.left = "0px";
             canvas.style.width = innerWidth + "px"; 
             canvas.style.height = innerHeight + "px";
             canvas.width = canWidth ;
-            canvas.height = canHeight ;
+            canvas.height = canHeight ;*/
 
           
             /*
@@ -191,11 +165,11 @@
 
                 g.beginPath();
                 g.moveTo(0, 0);
-
+/*
                 g.lineTo(window.innerWidth, 0);//this refers to canvase size
                 g.lineTo(window.innerWidth, window.innerHeight);
                 g.lineTo(0, window.innerHeight);
-                g.lineTo(0, 0);
+                g.lineTo(0, 0);*/
                 g.strokeStyle = "#6494ef"; //color of background
                 g.stroke();
                 g.beginPath();
