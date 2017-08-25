@@ -99,10 +99,10 @@
         
         <p class="clear">
         <div id = "Canv" >
-        Hellooooooooooooooooooooooooooooooooo
+        
         <canvas id=canvas1 >
         </canvas>
-        Hello0ooooooooooooooooooooooooo2
+        
         </div>
         </p>
 
@@ -120,23 +120,19 @@
         var canWidth = 1200;
         var canHeight = 650;
           var createCanvas = function(){
-            if(canvas !== undefined){
-              document.body.removeChild(canvas);
-            
-            }
-             
             scale = Math.max(innerWidth /canWidth, innerHeight / canHeight);
 
-            var leftOffset = 0;
-            var topOffset = 0;
+       /*     var leftOffset = 0;
+            var topOffset = 0;*/
             canW = scale * canWidth - 50;
             canH = scale * canHeight - 200;
+            /*
             if(canW > innerWidth ){
                 leftOffset = ((canW - innerWidth) / canW) * canWidth / 2;
             }else
             if(canH > innerHeight ){
                 topOffset = ((canH - innerHeight) / canH) * canHeight / 2;
-            }
+            }*/
             canvas = document.createElement("canvas");
             canvas.style.position = "absolute";
             canvas.style.top = "0px";
@@ -146,7 +142,7 @@
             canvas.width = canWidth ;
             canvas.height = canHeight ;
 
-            document.body.appendChild(canvas);
+          
             /*
             var ctx = canvas.getContext("2d");
             ctx.fillStyle = "#FF0000";
