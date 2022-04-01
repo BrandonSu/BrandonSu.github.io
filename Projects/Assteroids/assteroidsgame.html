@@ -10,7 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 
-var assteroids = [];
+const assteroids = new Map();
 let done = false;
 let index = 0;
 
@@ -34,9 +34,16 @@ var myGameArea = {
     },
     end : function() {
         console.log("replace");
-       // window.open("https://www.plannedparenthood.org/educators/implementing-sex-education") ;
-        window.location = "assteroid.html";
-        window.open("https://www.plannedparenthood.org/educators/implementing-sex-education") ;
+        // window.localStorage.setItem()
+        //^in react you'd use state to save this more optimally
+
+        window.open("https://www.hopkinsmedicine.org/health/wellness-and-prevention/safer-sex-guidelines") ;
+        window.location = "assteroid.html"; //resets screen to home page
+        // window.sessionStorage.setItem('key', 'value'); data is cleared when session ends
+        //only exists for the specific window/tab the page is opened in, a new tab opens a new sessionStorage
+        
+        //window.localStorage saves across browser sessions
+        // window.localStorage.setItem('myCat', 'Tom');
     } 
 }
 
@@ -46,8 +53,10 @@ function assteroid() {
     butt.setAttribute('src', 'assteroid_v2.png');
     butt.setAttribute('class', 'overlays');
     butt.setAttribute('id', index);
-    butt.setAttribute('health', 5);
-    $(butt).css('transform', 'rotate(' + 180 + 'deg)');
+    this.id = index
+    // butt.setAttribute('health', 3);
+    this.health = 5;
+    butt.style.transform = 'rotate(' + 180 + 'deg)';
     index++;
     document.body.appendChild(butt);
     this.x = -99; // x coordinate
@@ -61,62 +70,82 @@ function assteroid() {
         butt.style.left = this.x + "px";
         butt.style.top = this.y + "px";
         // update x and y positions using speedx and speedy 
+        // console.log('this.health', this.health)
+
     }
     this.crashed = function() {
         // return true or false based on size and position... not very reliable
-        for (i = 0; i < assteroids.length - 1; i += 1) {
-            if (assteroids[i].x + assteroids[i].width - 40 > myGameArea.canvas.width || assteroids[i].x < -1 * assteroids[i].width) {
+        for (let [key, value] of assteroids){
+            if (value.x + value.width - 40 > myGameArea.canvas.width || value.x < -1 * value.width) {
                 return true;
             }
         }
         return false;
     }
     var that = this;
-    butt.onclick = function() {
+    butt.onclick = () => {
+        console.log('this.health', this.health)
+        
         this.health -= 1;
+        console.log('this.health', this.health)
         if (this.health <=0){
-            document.body.removeChild(document.body.childNodes[this.id]);
+            document.body.removeChild(butt);
+            console.log(this.id)
+            assteroids.delete(this.id)
+            console.log(assteroids)
         }
-        angle = getRotationDegrees($(this)) + 180;
-        $(this).css('transform', 'rotate(' + angle + 'deg)');
+        // angle = getRotationDegrees(butt) + 180;
+        // butt.style.transform = 'rotate(' + angle + 'deg)';
+        butt.style.transform = flip(butt);
         that.speedx = -that.speedx;
     }
 }
 
-function getRotationDegrees(obj) {
-    var matrix = obj.css("-webkit-transform") ||
-    obj.css("-moz-transform")    ||
-    obj.css("-ms-transform")     ||
-    obj.css("-o-transform")      ||
-    obj.css("transform");
-    if(matrix !== 'none') {
-        var values = matrix.split('(')[1].split(')')[0].split(',');
-        var a = values[0];
-        var b = values[1];
-        var angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
-    } else { var angle = 0; }
-    return (angle < 0) ? angle + 360 : angle;
+function flip(obj) {
+    var matrix = obj.style["-webkit-transform"] ||
+    obj.style["-moz-transform"]    ||
+    obj.style["-ms-transform"]     ||
+    obj.style["-o-transform"]      ||
+    obj.style["transform"];
+    console.log('matrix',matrix)
+    // matrix rotate(180deg)
+    return matrix == "rotate(180deg)" ? "rotate(0deg)" : "rotate(180deg)"
+    // if(matrix !== 'none') {
+    //     var values = matrix.split('(')[1].split(')')[0].split(',');
+    //     console.log(values)
+    //     var a = values[0];
+    //     var b = values[1];
+    //     var angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
+    // } else { var angle = 0; }
+    // return (angle < 0) ? angle + 360 : angle;
 }
 
 function updateGameArea() {
     if (!done) {
         // call this function to avoid leaving trailing paths and test if anything has crashed yet
-        for (i = 0; i < assteroids.length; i += 1) {
-            if (assteroids[i].crashed()) {
+       
+        //death code
+        for (let [key, value] of assteroids){
+            if (value.crashed()) {
                 alert("You lost!");
+                done = true;
                 myGameArea.end();
-                i = assteroids.length;
+                break;
             } 
         }
+      
         myGameArea.clear(); // refresh screen before updating assteroid drawings
         myGameArea.frameNo += 1; 
         if (myGameArea.frameNo == 1 || everyinterval(100)) { // every 150 ms draw a new assteroid and add it to our list of assteroids
-            assteroids.push(new assteroid());
+            assteroids.set(index, new assteroid());
         }
-        if (myGameArea.frameNo === 1) assteroids.push(new assteroid());
-        for (i = 0; i < assteroids.length; i +=1) {
-            assteroids[i].update(); // update all of our assteroids (change x and y positions)
+        if (myGameArea.frameNo === 1)  assteroids.set(index, new assteroid());;
+       
+        for (let [key, value] of assteroids){
+            value.update(); // update all of our assteroids (change x and y positions)
+
         }
+      
     }
 }
 
