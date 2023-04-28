@@ -1,5 +1,4 @@
 h1 {
-/*	background-color: white;*/
 	color: white;
 	font-family: 'VT323', monospace;
 	text-align: center;
@@ -29,13 +28,8 @@ body {
 }
 #head {
 	width: 60%;
-	/*text-align: center;*/
-	/*border: 5px solid orange;*/
-	/*background-color:white;*/
 	margin: auto;
-	/*padding:50px;*/
 }
-
 
 .buttons {
 	margin-top: 0;
@@ -59,8 +53,7 @@ body {
 .button3 {font-size: 40px; margin:auto;display: block;}
 
 a {
-/*	background-color: white;*/
-	color: white/*rgb(41,38,100)*/;
+	color: white;
 	font-family: 'VT323', monospace;
 	text-align: center;
 	font-size: 150%;
